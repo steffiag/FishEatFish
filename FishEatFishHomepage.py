@@ -8,7 +8,6 @@ If Python and Arcade are installed, this example can be run from the command lin
 python -m arcade.examples.starting_template
 """
 import arcade
-import fishcode as fc
 import arcade.gui
 
 SCREEN_WIDTH = 800
@@ -102,7 +101,7 @@ class Homepage(arcade.Window):
         # Create your sprites and sprite lists here
         #sets up background
         image_source = "backgrounds/FishHome.png"
-        self.background = arcade.load_texture("backgrounds/FishHome.png")
+        self.background = arcade.load_texture("FishHome.png")
 
     def on_draw(self):
         """
@@ -132,9 +131,3 @@ def main():
     game = Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.run()
-    
-    fc.main()
-
-
-if __name__ == "__main__":
-    main()
