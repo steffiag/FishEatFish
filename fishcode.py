@@ -1,9 +1,9 @@
 import random
 import arcade
 
-# --- Constants ---
+# --- Constants (other than powerups) ---
 SPRITE_SCALING_PLAYER = .5
-FISH_COUNT = 50
+FISH_COUNT = 20
 
 SCREEN_WIDTH = 1100
 SCREEN_HEIGHT = 700
@@ -30,7 +30,10 @@ class power():
         self.image = image
         self.size = .25
         self.speed = 0
-            
+
+power_ups = [power("images/""Powerup_size.png"),
+            power("images/""Powerup_speed.png"),
+            power("images/""Powerup_shield.png")]
 
 class Fish(arcade.Sprite):
 
@@ -88,12 +91,6 @@ class MyGame(arcade.Window):
 
         arcade.set_background_color(arcade.color.BLEU_DE_FRANCE)
 
-        # Powerups
-        self.power_ups = [power("images/""Powerup_size.png"),
-                    power("images/""Powerup_speed.png"),
-                    power("images/""Powerup_shield.png")]
-        self.small = True
-
     def setup(self):
         """ Set up the game and initialize the variables. """
 
@@ -138,11 +135,11 @@ class MyGame(arcade.Window):
         for i in range(5):
 
             # Create the powerup instance
-            powerup = Fish(self.power_ups[random.randint(0,2)])
+            powerup = Fish(power_ups[random.randint(0,2)])
 
             # Position the powerup
-            powerup.center_x = random.randrange(SCREEN_WIDTH-30)+15
-            powerup.center_y = random.randrange(SCREEN_HEIGHT-30)+15
+            powerup.center_x = random.randrange(SCREEN_WIDTH-60)+30
+            powerup.center_y = random.randrange(SCREEN_HEIGHT-60)+30
             
             # Add the powerups to the lists
             self.all_sprites_list.append(powerup)
@@ -186,29 +183,29 @@ class MyGame(arcade.Window):
         
         # Loop through each colliding powerup and remove it.
         for powerup in hit_list:
-            powerup.remove_from_sprite_lists()
-            if powerup == self.power_ups[0]:
+            if powerup == power_ups[0]:
                 self.size()
-    
+            powerup.remove_from_sprite_lists()
+
     def size(self):
-        
         # Create larger sprite in the same place
         self.player_sprite2 = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
         self.player_sprite2.center_x = self.player_sprite.center_x
         self.player_sprite2.center_y = self.player_sprite.center_y
-        
+
         # Remove old sprite
         self.player_sprite.remove_from_sprite_lists()
 
         # Remake sprite
-        self.player_sprite = arcade.Sprite("images/""Player.png", (SPRITE_SCALING_PLAYER+.25))
+        SPRITE_SCALING_PLAYER += .25
+        self.player_sprite = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
         self.player_sprite.center_x = self.player_sprite2.center_x
         self.player_sprite.center_y = self.player_sprite2.center_y
 
         self.all_sprites_list.append(self.player_sprite)
-        
-        # Change on_update()
-        self.small = False
+
+        # Change score
+        self.score += 5
         
         # Redraw everything
         self.all_sprites_list.draw()
