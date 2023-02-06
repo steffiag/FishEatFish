@@ -8,6 +8,7 @@ If Python and Arcade are installed, this example can be run from the command lin
 python -m arcade.examples.starting_template
 """
 import arcade
+import fishcode as fc
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -71,6 +72,8 @@ def main():
     game = Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.run()
+    
+    fc.main()
 
 
 if __name__ == "__main__":
