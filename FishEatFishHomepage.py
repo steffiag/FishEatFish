@@ -9,6 +9,7 @@ python -m arcade.examples.starting_template
 """
 import arcade
 import fishcode as fc
+import arcade.gui
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -33,14 +34,68 @@ class Homepage(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         
-       
+        # --- Required for all code that uses UI element,
+        # a UIManager to handle the UI.
+        self.manager = arcade.gui.UIManager()
+        self.manager.enable()
 
         arcade.set_background_color(arcade.color.BLUE)
         
         self.background = None
+        
+        # Render button
+        default_style = {
+            "font_name": ("Kenney Blocks", "arial"),
+            "font_size": 12,
+            "font_color": arcade.color.WHITE,
+            "border_width": 2,
+            "border_color": None,
+            "bg_color": arcade.color.GOLD,
 
-        # If you have sprite lists, you should create them here,
-        # and set them to None
+            # used if button is pressed
+            "bg_color_pressed": arcade.color.WHITE,
+            "border_color_pressed": arcade.color.WHITE,  # also used when hovered
+            "font_color_pressed": arcade.color.GOLD
+        }
+        
+        # Create a vertical BoxGroup to align buttons
+        self.v_box = arcade.gui.UIBoxLayout()
+
+        # Create the buttons
+        start_button = arcade.gui.UIFlatButton(text="Start!",width=150, style = default_style)
+        self.v_box.add(start_button.with_space_around(bottom=3.5))
+        
+        self.manager.add(
+            arcade.gui.UIAnchorWidget(
+                anchor_x="center_x",
+                anchor_y="center_y",
+                child=self.v_box))
+        
+        # Create the buttons
+        instructions_button = arcade.gui.UIFlatButton(text= "Instructions",width=150, style = default_style)
+        self.v_box.add(instructions_button.with_space_around(bottom=-50))
+        instructions_button.on_click = self.on_click_open
+        
+        self.manager.add(
+            arcade.gui.UIAnchorWidget(
+                anchor_x="center_x",
+                anchor_y="center_y",
+                child=self.v_box))
+            
+    def on_click_open(self, event):
+        # The code in this function is run when we click the ok button.
+        # The code below opens the message box and auto-dismisses it when done.
+        message_box = arcade.gui.UIMessageBox(
+            width=300,
+            height=200,
+            message_text=(
+                "You are the pink fish. You need to eat fish that are smaller than you. Eating a smaller fish increases your size. If you eat a fish thats bigger than you, you die and game over!"
+            ),
+            callback=self.on_message_box_close,
+            buttons=["Ok", "Cancel"]
+        )
+        
+        self.manager.add(message_box)
 
     def setup(self):
         """ Set up the game variables. Call to re-start the game. """
@@ -62,6 +117,11 @@ class Homepage(arcade.Window):
         arcade.draw_lrwh_rectangle_textured(0, 0,
                                             SCREEN_WIDTH, SCREEN_HEIGHT,
                                             self.background)
+        
+        self.manager.draw()
+        
+    def on_message_box_close(self, button_text):
+        print(f"User pressed {button_text}.")
 
         
     
