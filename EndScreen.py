@@ -90,6 +90,13 @@ class End_Homepage(arcade.Window):
         # 
         # TO DO (not sure how to impliment)
         #
+        START_SCREEN_WIDTH = 800
+        START_SCREEN_HEIGHT = 600
+        START_SCREEN_TITLE = "Fish Eat Fish"
+        START_CHARACTER_SCALING = 1
+        START_TILE_SCALING = 0.5
+        
+
         pass
 
 def main():
