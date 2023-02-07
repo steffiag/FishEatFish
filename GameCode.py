@@ -11,24 +11,25 @@ SCREEN_TITLE = "Fish Eat Fish"
 
 class enemy():
     
-    def __init__(self,image,speed,size):
-        self.size = size
+    def __init__(self,image,speed,image_size,size):
+        self.image_size = image_size
         self.speed = speed
         self.image = image
+        self.size = size
         
 
-normal_fish = [enemy("images/""Enemy_0.png",2,.3),
-                enemy("images/""Enemy_1.png",3,.4),
-                enemy("images/""Enemy_2.png",1.5,.6),
-                enemy("images/""Enemy_3.png",4,.2),
-                enemy("images/""Enemy_4.png",1,.7),
-                enemy("images/""Enemy_5.png",.25,.5)]
+normal_fish = [enemy("images/""Enemy_0.png",2,.3,4),
+                enemy("images/""Enemy_1.png",3,.4,10),
+                enemy("images/""Enemy_2.png",1.5,.6,35),
+                enemy("images/""Enemy_3.png",4,.2,2),
+                enemy("images/""Enemy_4.png",1,.7,60),
+                enemy("images/""Enemy_5.png",.25,.5,20)]
 
 class power():
 
     def __init__(self,image,type):
         self.image = image
-        self.size = .25
+        self.image_size = .25
         self.speed = 0
         self.type = type
 
@@ -42,7 +43,7 @@ class Fish(arcade.Sprite):
 
         self.typeoffish = typeoffish
         
-        sprite_scaling = self.typeoffish.size
+        sprite_scaling = self.typeoffish.image_size
         filename = self.typeoffish.image
         super().__init__(filename, sprite_scaling)
 
@@ -82,10 +83,10 @@ class MyGame(arcade.Window):
         # Variables that will hold sprite lists
         self.all_sprites_list = None
         self.fish_list = None
+        self.num_of_fish = 0
 
         # Set up the player info
         self.player_sprite = None
-        self.score = 0
 
         # Don't show the mouse cursor
         self.set_mouse_visible(False)
@@ -101,7 +102,7 @@ class MyGame(arcade.Window):
         self.powerup_list = arcade.SpriteList()
 
         # Score
-        self.score = 0
+        self.score = 5
 
         # Set up the player
         # Character image from kenney.nl
@@ -131,6 +132,7 @@ class MyGame(arcade.Window):
             # Add the fish to the lists
             self.all_sprites_list.append(fish)
             self.fish_list.append(fish)
+            self.num_of_fish += 1
 
         # Create the powerups
         for i in range(5):
@@ -139,8 +141,8 @@ class MyGame(arcade.Window):
             powerup = Fish(power_ups[random.randint(0,2)])
 
             # Position the powerup
-            powerup.center_x = random.randrange(SCREEN_WIDTH-60)+30
-            powerup.center_y = random.randrange(SCREEN_HEIGHT-60)+30
+            powerup.center_x = random.randrange(SCREEN_WIDTH-140)+70
+            powerup.center_y = random.randrange(SCREEN_HEIGHT-140)+70
             
             # Add the powerups to the lists
             self.all_sprites_list.append(powerup)
@@ -175,9 +177,15 @@ class MyGame(arcade.Window):
         
         # Loop through each colliding fish, remove it, and add to the score.
         for fish in hit_list:
-            fish.remove_from_sprite_lists()
-            self.increase_size()
-            if len(self.fish_list) == 0:
+            if self.can_eat(fish) == True:
+                fish.remove_from_sprite_lists()
+                self.increase_size(fish)
+                self.num_of_fish -= 1
+                if self.num_of_fish == 0:
+                    self.dead = False
+                    self.on_finish()
+            else:
+                self.dead = True
                 self.on_finish()
 
         # Generate a list of all powerups that collided with the player.
@@ -188,10 +196,10 @@ class MyGame(arcade.Window):
         for powerup in hit_list:
             if powerup.typeoffish.type == "size":
                 for x in range(3):
-                    self.increase_size()
+                    self.increase_size("Powerup")
             powerup.remove_from_sprite_lists()
 
-    def increase_size(self):
+    def increase_size(self,fish):
         global SPRITE_SCALING_PLAYER
         # Create larger sprite in the same place
         self.player_sprite2 = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
@@ -210,16 +218,23 @@ class MyGame(arcade.Window):
         self.all_sprites_list.append(self.player_sprite)
 
         # Change score
-        self.score += 1
+        if fish == "Powerup":
+            self.score += 1
+        else:
+            self.score += fish.typeoffish.size
         
         # Redraw everything
         self.all_sprites_list.draw()
     
     def on_finish(self):
-        # 
-        # TO DO (not sure how to impliment)
-        #
-        pass
+        if self.dead == True:
+            self.score = 0
+        quit()
+
+    def can_eat(self,fish):
+        if fish.typeoffish.size > self.score:
+            return False
+        return True
 
 
 def main():
