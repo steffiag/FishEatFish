@@ -100,9 +100,8 @@ class Homepage(arcade.Window):
     def setup(self):
         """ Set up the game variables. Call to re-start the game. """
         # Create your sprites and sprite lists here
-        #sets up background
-        image_source = "FishHome.png"
-        self.background = arcade.load_texture("FishHome.png")
+        # sets up background
+        self.background = arcade.load_texture("images/""FishHome.png")
 
     def on_draw(self):
         """
