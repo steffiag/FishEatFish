@@ -1,12 +1,3 @@
-"""
-Starting Template
-
-Once you have learned how to use classes, you can begin your program with this
-template.
-
-If Python and Arcade are installed, this example can be run from the command line with:
-python -m arcade.examples.starting_template
-"""
 import arcade
 import GameCode as gc
 import arcade.gui
@@ -62,41 +53,16 @@ class Homepage(arcade.Window):
         self.v_box = arcade.gui.UIBoxLayout()
 
         # Create the buttons
-        start_button = arcade.gui.UIFlatButton(text="Start!",width=150, style = default_style)
-        self.v_box.add(start_button.with_space_around(bottom=3.5))
-        start_button.on_click = self.on_start
+        restart_button = arcade.gui.UIFlatButton(text="Play again?",width=150, style = default_style)
+        self.v_box.add(restart_button.with_space_around(bottom=3.5))
+        restart_button.on_click = self.on_restart
         
         self.manager.add(
             arcade.gui.UIAnchorWidget(
                 anchor_x="center_x",
                 anchor_y="center_y",
                 child=self.v_box))
-        
-        # Create the buttons
-        instructions_button = arcade.gui.UIFlatButton(text= "Instructions",width=150, style = default_style)
-        self.v_box.add(instructions_button.with_space_around(bottom=-50))
-        instructions_button.on_click = self.on_click_open
-        
-        self.manager.add(
-            arcade.gui.UIAnchorWidget(
-                anchor_x="center_x",
-                anchor_y="center_y",
-                child=self.v_box))
-            
-    def on_click_open(self, event):
-        # The code in this function is run when we click the ok button.
-        # The code below opens the message box and auto-dismisses it when done.
-        message_box = arcade.gui.UIMessageBox(
-            width=300,
-            height=200,
-            message_text=(
-                "You are the pink fish. You need to eat fish that are smaller than you. Eating a smaller fish increases your size. If you eat a fish thats bigger than you, you die and game over!"
-            ),
-            callback=self.on_message_box_close,
-            buttons=["Ok"]
-        )
-        
-        self.manager.add(message_box)
+
 
     def setup(self):
         """ Set up the game variables. Call to re-start the game. """
@@ -119,22 +85,14 @@ class Homepage(arcade.Window):
                                             self.background)
         
         self.manager.draw()
-        
-    def on_message_box_close(self, button_text):
-        print(f"User pressed {button_text}.")
 
-    def on_start(self):
+    def on_restart(self):
         # 
         # TO DO (not sure how to impliment)
         #
         pass
 
-        
-    
-  
-        
 def main():
-    """ Main function """
     game = Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.run()
