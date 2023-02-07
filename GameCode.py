@@ -183,8 +183,7 @@ class MyGame(arcade.Window):
 
 
         # Move the center of the player sprite to match the mouse x, y
-        self.player_sprite.center_x = x
-        self.player_sprite.center_y = y
+        
 
     def on_update(self, delta_time):
         """ Movement and game logic """
