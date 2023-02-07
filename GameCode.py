@@ -8,6 +8,7 @@ FISH_COUNT = 20
 SCREEN_WIDTH = 1100
 SCREEN_HEIGHT = 700
 SCREEN_TITLE = "Fish Eat Fish"
+MOVEMENT_SPEED=5
 
 class enemy():
     
@@ -182,8 +183,7 @@ class MyGame(arcade.Window):
 
 
         # Move the center of the player sprite to match the mouse x, y
-        self.player_sprite.center_x = x
-        self.player_sprite.center_y = y
+        
 
     def on_update(self, delta_time):
         """ Movement and game logic """
