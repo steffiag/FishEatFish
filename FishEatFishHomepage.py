@@ -124,10 +124,7 @@ class Homepage(arcade.Window):
         print(f"User pressed {button_text}.")
 
     def on_start(self):
-        # 
-        # TO DO (not sure how to impliment)
-        #
-        pass
+        arcade.close_window()
 
         
     
@@ -138,5 +135,3 @@ def main():
     game = Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.run()
-
-main()
