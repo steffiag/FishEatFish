@@ -176,7 +176,7 @@ class MyGame(arcade.Window):
         # Loop through each colliding fish, remove it, and add to the score.
         for fish in hit_list:
             fish.remove_from_sprite_lists()
-            self.score += 1
+            self.increase_size()
             if len(self.fish_list) == 0:
                 self.on_finish()
 
@@ -187,10 +187,11 @@ class MyGame(arcade.Window):
         # Loop through each colliding powerup and remove it.
         for powerup in hit_list:
             if powerup.typeoffish.type == "size":
-                self.pu_size()
+                for x in range(3):
+                    self.increase_size()
             powerup.remove_from_sprite_lists()
 
-    def pu_size(self):
+    def increase_size(self):
         global SPRITE_SCALING_PLAYER
         # Create larger sprite in the same place
         self.player_sprite2 = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
@@ -201,7 +202,7 @@ class MyGame(arcade.Window):
         self.player_sprite.remove_from_sprite_lists()
 
         # Remake sprite
-        SPRITE_SCALING_PLAYER += .25
+        SPRITE_SCALING_PLAYER += .05
         self.player_sprite = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
         self.player_sprite.center_x = self.player_sprite2.center_x
         self.player_sprite.center_y = self.player_sprite2.center_y
@@ -209,7 +210,7 @@ class MyGame(arcade.Window):
         self.all_sprites_list.append(self.player_sprite)
 
         # Change score
-        self.score += 5
+        self.score += 1
         
         # Redraw everything
         self.all_sprites_list.draw()
