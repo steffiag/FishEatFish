@@ -95,7 +95,16 @@ class End_Homepage(arcade.Window):
         START_SCREEN_TITLE = "Fish Eat Fish"
         START_CHARACTER_SCALING = 1
         START_TILE_SCALING = 0.5
-        
+        class Start_Homepage(arcade.Window):
+            def __init__(self, width, height, title):
+                super().__init__(width, height, title)
+                # required for all code using UI
+                self.manager = arcade.gui.UIManager()
+                self.manager.enable()
+
+                arcade.set_background_color(arcade.color.BLUE)
+
+                self.background = None
 
         pass
 
