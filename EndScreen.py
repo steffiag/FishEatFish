@@ -13,7 +13,7 @@ SCREEN_TITLE = "Fish Eat Fish"
 CHARACTER_SCALING = 1
 TILE_SCALING = 0.5
 
-class Homepage(arcade.Window):
+class End_Homepage(arcade.Window):
     """
     Main application class.
 
@@ -90,10 +90,17 @@ class Homepage(arcade.Window):
         # 
         # TO DO (not sure how to impliment)
         #
+        START_SCREEN_WIDTH = 800
+        START_SCREEN_HEIGHT = 600
+        START_SCREEN_TITLE = "Fish Eat Fish"
+        START_CHARACTER_SCALING = 1
+        START_TILE_SCALING = 0.5
+        
+
         pass
 
 def main():
-    game = Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+    game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.run()
 
