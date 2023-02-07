@@ -26,14 +26,15 @@ normal_fish = [enemy("images/""Enemy_0.png",2,.3),
 
 class power():
 
-    def __init__(self,image):
+    def __init__(self,image,type):
         self.image = image
         self.size = .25
         self.speed = 0
+        self.type = type
 
-power_ups = [power("images/""Powerup_size.png"),
-            power("images/""Powerup_speed.png"),
-            power("images/""Powerup_shield.png")]
+power_ups = [power("images/""Powerup_size.png","size"),
+            power("images/""Powerup_speed.png","speed"),
+            power("images/""Powerup_shield.png","shield")]
 
 class Fish(arcade.Sprite):
 
@@ -176,6 +177,8 @@ class MyGame(arcade.Window):
         for fish in hit_list:
             fish.remove_from_sprite_lists()
             self.score += 1
+            if len(self.fish_list) == 0:
+                self.on_finish()
 
         # Generate a list of all powerups that collided with the player.
         hit_list = arcade.check_for_collision_with_list(self.player_sprite,
@@ -183,11 +186,12 @@ class MyGame(arcade.Window):
         
         # Loop through each colliding powerup and remove it.
         for powerup in hit_list:
-            if powerup == power_ups[0]:
-                self.size()
+            if powerup.typeoffish.type == "size":
+                self.pu_size()
             powerup.remove_from_sprite_lists()
 
-    def size(self):
+    def pu_size(self):
+        global SPRITE_SCALING_PLAYER
         # Create larger sprite in the same place
         self.player_sprite2 = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
         self.player_sprite2.center_x = self.player_sprite.center_x
@@ -209,6 +213,12 @@ class MyGame(arcade.Window):
         
         # Redraw everything
         self.all_sprites_list.draw()
+    
+    def on_finish(self):
+        # 
+        # TO DO (not sure how to impliment)
+        #
+        pass
 
 
 def main():
