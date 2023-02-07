@@ -1,9 +1,9 @@
 import random
 import arcade
 
-# --- Constants ---
+# --- Constants (other than powerups) ---
 SPRITE_SCALING_PLAYER = .5
-FISH_COUNT = 50
+FISH_COUNT = 20
 
 SCREEN_WIDTH = 1100
 SCREEN_HEIGHT = 700
@@ -26,11 +26,15 @@ normal_fish = [enemy("images/""Enemy_0.png",2,.3),
 
 class power():
 
-    def __init__(self,image):
+    def __init__(self,image,type):
         self.image = image
         self.size = .25
         self.speed = 0
-            
+        self.type = type
+
+power_ups = [power("images/""Powerup_size.png","size"),
+            power("images/""Powerup_speed.png","speed"),
+            power("images/""Powerup_shield.png","shield")]
 
 class Fish(arcade.Sprite):
 
@@ -88,12 +92,6 @@ class MyGame(arcade.Window):
 
         arcade.set_background_color(arcade.color.BLEU_DE_FRANCE)
 
-        # Powerups
-        self.power_ups = [power("images/""Powerup_size.png"),
-                    power("images/""Powerup_speed.png"),
-                    power("images/""Powerup_shield.png")]
-        self.small = True
-
     def setup(self):
         """ Set up the game and initialize the variables. """
 
@@ -138,11 +136,11 @@ class MyGame(arcade.Window):
         for i in range(5):
 
             # Create the powerup instance
-            powerup = Fish(self.power_ups[random.randint(0,2)])
+            powerup = Fish(power_ups[random.randint(0,2)])
 
             # Position the powerup
-            powerup.center_x = random.randrange(SCREEN_WIDTH-30)+15
-            powerup.center_y = random.randrange(SCREEN_HEIGHT-30)+15
+            powerup.center_x = random.randrange(SCREEN_WIDTH-60)+30
+            powerup.center_y = random.randrange(SCREEN_HEIGHT-60)+30
             
             # Add the powerups to the lists
             self.all_sprites_list.append(powerup)
@@ -178,9 +176,9 @@ class MyGame(arcade.Window):
         # Loop through each colliding fish, remove it, and add to the score.
         for fish in hit_list:
             fish.remove_from_sprite_lists()
-            self.score += 1
-            #if self.player_sprite.size>fish.size:
-                #self.player_sprite.size+=1
+            self.increase_size()
+            if len(self.fish_list) == 0:
+                self.on_finish()
 
         # Generate a list of all powerups that collided with the player.
         hit_list = arcade.check_for_collision_with_list(self.player_sprite,
@@ -188,39 +186,43 @@ class MyGame(arcade.Window):
         
         # Loop through each colliding powerup and remove it.
         for powerup in hit_list:
+            if powerup.typeoffish.type == "size":
+                for x in range(3):
+                    self.increase_size()
             powerup.remove_from_sprite_lists()
-            if powerup == self.power_ups[0]:
-                self.size()
-    
-    def size(self):
-        
+
+    def increase_size(self):
+        global SPRITE_SCALING_PLAYER
         # Create larger sprite in the same place
         self.player_sprite2 = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
         self.player_sprite2.center_x = self.player_sprite.center_x
         self.player_sprite2.center_y = self.player_sprite.center_y
-        
+
         # Remove old sprite
         self.player_sprite.remove_from_sprite_lists()
 
         # Remake sprite
-        self.player_sprite = arcade.Sprite("images/""Player.png", (SPRITE_SCALING_PLAYER+.25))
+        SPRITE_SCALING_PLAYER += .05
+        self.player_sprite = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
         self.player_sprite.center_x = self.player_sprite2.center_x
         self.player_sprite.center_y = self.player_sprite2.center_y
 
         self.all_sprites_list.append(self.player_sprite)
-        
-        # Change on_update()
-        self.small = False
+
+        # Change score
+        self.score += 1
         
         # Redraw everything
         self.all_sprites_list.draw()
+    
+    def on_finish(self):
+        # 
+        # TO DO (not sure how to impliment)
+        #
+        pass
 
 
 def main():
     window = MyGame()
     window.setup()
     arcade.run()
-
-
-if __name__ == "__main__":
-    main()
