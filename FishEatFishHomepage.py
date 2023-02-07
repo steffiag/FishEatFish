@@ -77,6 +77,7 @@ class Homepage(arcade.Window):
         self.v_box.add(instructions_button.with_space_around(bottom=-50))
         instructions_button.on_click = self.on_click_open
         
+        
         self.manager.add(
             arcade.gui.UIAnchorWidget(
                 anchor_x="center_x",
