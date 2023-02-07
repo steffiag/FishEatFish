@@ -8,6 +8,7 @@ FISH_COUNT = 20
 SCREEN_WIDTH = 1100
 SCREEN_HEIGHT = 700
 SCREEN_TITLE = "Fish Eat Fish"
+MOVEMENT_SPEED=5
 
 class enemy():
     
