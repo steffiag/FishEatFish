@@ -158,7 +158,6 @@ class MyGame(arcade.Window):
         output = f"Size: {self.score}"
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
 
-    #def on_mouse_motion(self, x, y, dx, dy):
     def on_key_press(self, key, modifiers):
 
         # If the player presses a key, update the speed
@@ -206,10 +205,10 @@ class MyGame(arcade.Window):
                 self.num_of_fish -= 1
                 if self.num_of_fish == 0:
                     self.dead = False
-                    self.on_finish()
+                    self.on_finish
             else:
                 self.dead = True
-                self.on_finish()
+                self.on_finish
 
         # Generate a list of all powerups that collided with the player.
         hit_list = arcade.check_for_collision_with_list(self.player_sprite,
@@ -252,7 +251,7 @@ class MyGame(arcade.Window):
     def on_finish(self):
         if self.dead == True:
             self.score = 0
-        quit()
+        arcade.close_window()
 
     def can_eat(self,fish):
         if fish.typeoffish.size > self.score:

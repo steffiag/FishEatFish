@@ -112,5 +112,3 @@ def main():
     game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.run()
-
-main()
