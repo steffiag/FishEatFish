@@ -8,6 +8,7 @@ FISH_COUNT = 20
 SCREEN_WIDTH = 1100
 SCREEN_HEIGHT = 700
 SCREEN_TITLE = "Fish Eat Fish"
+MOVEMENT_SPEED=5
 
 class enemy():
     
@@ -157,12 +158,34 @@ class MyGame(arcade.Window):
         output = f"Size: {self.score}"
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
 
-    def on_mouse_motion(self, x, y, dx, dy):
-        """ Handle Mouse Motion """
+    #def on_mouse_motion(self, x, y, dx, dy):
+    def on_key_press(self, key, modifiers):
+
+        # If the player presses a key, update the speed
+        if key == arcade.key.UP:
+            self.player_sprite.change_y = MOVEMENT_SPEED
+        elif key == arcade.key.DOWN:
+            self.player_sprite.change_y = -MOVEMENT_SPEED
+        elif key == arcade.key.LEFT:
+            self.player_sprite.change_x = -MOVEMENT_SPEED
+        elif key == arcade.key.RIGHT:
+            self.player_sprite.change_x = MOVEMENT_SPEED
+
+    def on_key_release(self, key, modifiers):
+        """Called when the user releases a key. """
+
+        # If a player releases a key, zero out the speed.
+        # This doesn't work well if multiple keys are pressed.
+        # Use 'better move by keyboard' example if you need to
+        # handle this.
+        if key == arcade.key.UP or key == arcade.key.DOWN:
+            self.player_sprite.change_y = 0
+        elif key == arcade.key.LEFT or key == arcade.key.RIGHT:
+            self.player_sprite.change_x = 0
+
 
         # Move the center of the player sprite to match the mouse x, y
-        self.player_sprite.center_x = x
-        self.player_sprite.center_y = y
+        
 
     def on_update(self, delta_time):
         """ Movement and game logic """
