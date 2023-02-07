@@ -179,6 +179,8 @@ class MyGame(arcade.Window):
         for fish in hit_list:
             fish.remove_from_sprite_lists()
             self.score += 1
+            #if self.player_sprite.size>fish.size:
+                #self.player_sprite.size+=1
 
         # Generate a list of all powerups that collided with the player.
         hit_list = arcade.check_for_collision_with_list(self.player_sprite,
