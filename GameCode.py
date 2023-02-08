@@ -208,6 +208,7 @@ class MyGame(arcade.Window):
                     if self.num_of_fish == 0:
                         self.dead = False
                         self.on_finish
+                    fish.draw()
                 else:
                     self.dead = True
                     self.on_finish
@@ -247,7 +248,8 @@ class MyGame(arcade.Window):
     def can_eat(self,fish):
         if fish.typeoffish.size > self.score:
             return False
-        return True
+        else:
+            return True
 
 
 def main():
