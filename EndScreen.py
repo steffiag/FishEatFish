@@ -1,6 +1,6 @@
 import arcade
-import GameCode as gc
 import arcade.gui
+import main as restart
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -30,7 +30,7 @@ class End_Homepage(arcade.Window):
         self.manager = arcade.gui.UIManager()
         self.manager.enable()
 
-        arcade.set_background_color(arcade.color.BLUE)
+        arcade.set_background_color(arcade.color.BABY_BLUE)
         
         self.background = None
         
@@ -38,15 +38,15 @@ class End_Homepage(arcade.Window):
         default_style = {
             "font_name": ("Kenney Blocks", "arial"),
             "font_size": 12,
-            "font_color": arcade.color.WHITE,
+            "font_color": arcade.color.INDIGO,
             "border_width": 2,
             "border_color": None,
-            "bg_color": arcade.color.GOLD,
+            "bg_color": arcade.color.YELLOW,
 
             # used if button is pressed
-            "bg_color_pressed": arcade.color.WHITE,
-            "border_color_pressed": arcade.color.WHITE,  # also used when hovered
-            "font_color_pressed": arcade.color.GOLD
+            "bg_color_pressed": arcade.color.YELLOW,
+            "border_color_pressed": arcade.color.YELLOW,  # also used when hovered
+            "font_color_pressed": arcade.color.INDIGO
         }
         
         # Create a vertical BoxGroup to align buttons
@@ -57,6 +57,10 @@ class End_Homepage(arcade.Window):
         self.v_box.add(restart_button.with_space_around(bottom=3.5))
         restart_button.on_click = self.on_restart
         
+        end_button = arcade.gui.UIFlatButton(text="Play again?",width=150, style = default_style)
+        self.v_box.add(end_button.with_space_around(bottom=3.5))
+        end_button.on_click = self.on_end
+
         self.manager.add(
             arcade.gui.UIAnchorWidget(
                 anchor_x="center_x",
@@ -87,66 +91,10 @@ class End_Homepage(arcade.Window):
         self.manager.draw()
 
     def on_restart(self):
-        # 
-        # TO DO (not sure how to impliment)
-        #
-        START_SCREEN_WIDTH = 800
-        START_SCREEN_HEIGHT = 600
-        START_SCREEN_TITLE = "Fish Eat Fish"
-        START_CHARACTER_SCALING = 1
-        START_TILE_SCALING = 0.5
-        class Start_Homepage(arcade.Window):
-            def __init__(self, width, height, title):
-                super().__init__(width, height, title)
-                # required for all code using UI
-                self.manager = arcade.gui.UIManager()
-                self.manager.enable()
-
-                arcade.set_background_color(arcade.color.BLUE)
-
-                self.background = None
-
-                # Render button
-                default_style = {
-                    "font_name": ("Kenney Blocks", "arial"),
-                    "font_size": 12,
-                    "font_color": arcade.color.WHITE,
-                    "border_width": 2,
-                    "border_color": None,
-                    "bg_color": arcade.color.GOLD,
-
-                    # used if button is pressed
-                    "bg_color_pressed": arcade.color.WHITE,
-                    "border_color_pressed": arcade.color.WHITE,  # also used when hovered
-                    "font_color_pressed": arcade.color.GOLD
-                }
-                self.v_box = arcade.gui.UIBoxLayout()
-
-                # Create the buttons
-                start_button = arcade.gui.UIFlatButton(text="Start!",width=150, style = default_style)
-                self.v_box.add(start_button.with_space_around(bottom=3.5))
-                start_button.on_click = self.on_start
-        
-                self.manager.add(
-                    arcade.gui.UIAnchorWidget(
-                    anchor_x="center_x",
-                    nchor_y="center_y",
-                    child=self.v_box))
-                
-            def on_click_open(self, event):
-                # The code in this function is run when we click the "ok" button.
-                # The code below opens the messages box and auto-dismisses it when done.
-                message_box = arcade.gui.UIMessageBox(
-                    width = 300,
-                    height = 200,
-                    # Continue from here!
-                )
-                
-                
-               
-                    
-
-
+        restart.play = True
+    
+    def on_end(self):
+        restart.play = False
         
 
 def main():

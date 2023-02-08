@@ -128,9 +128,6 @@ class Homepage(arcade.Window):
         arcade.close_window()
 
         
-    
-  
-        
 def main():
     """ Main function """
     game = Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)

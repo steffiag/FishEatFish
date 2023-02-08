@@ -1,5 +1,6 @@
 import random
 import arcade
+import EndScreen as ending
 
 # --- Constants (other than powerups) ---
 SPRITE_SCALING_PLAYER = .5
@@ -198,17 +199,19 @@ class MyGame(arcade.Window):
                                                         self.fish_list)
         
         # Loop through each colliding fish, remove it, and add to the score.
-        for fish in hit_list:
-            if self.can_eat(fish) == True:
-                fish.remove_from_sprite_lists()
-                self.increase_size(fish)
-                self.num_of_fish -= 1
-                if self.num_of_fish == 0:
-                    self.dead = False
+        if len(hit_list) > 0:
+            for fish in hit_list:
+                if self.can_eat(fish) == True:
+                    fish.remove_from_sprite_lists()
+                    self.increase_size(fish)
+                    self.num_of_fish -= 1
+                    if self.num_of_fish == 0:
+                        self.dead = False
+                        self.on_finish
+                    fish.draw()
+                else:
+                    self.dead = True
                     self.on_finish
-            else:
-                self.dead = True
-                self.on_finish
 
         # Generate a list of all powerups that collided with the player.
         hit_list = arcade.check_for_collision_with_list(self.player_sprite,
@@ -223,21 +226,9 @@ class MyGame(arcade.Window):
 
     def increase_size(self,fish):
         global SPRITE_SCALING_PLAYER
-        # Create larger sprite in the same place
-        self.player_sprite2 = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
-        self.player_sprite2.center_x = self.player_sprite.center_x
-        self.player_sprite2.center_y = self.player_sprite.center_y
-
-        # Remove old sprite
-        self.player_sprite.remove_from_sprite_lists()
-
-        # Remake sprite
-        SPRITE_SCALING_PLAYER += .05
-        self.player_sprite = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
-        self.player_sprite.center_x = self.player_sprite2.center_x
-        self.player_sprite.center_y = self.player_sprite2.center_y
-
-        self.all_sprites_list.append(self.player_sprite)
+        self.player_sprite._scale += .05
+        self.player_sprite._height += .05
+        self.player_sprite._width += .05
 
         # Change score
         if fish == "Powerup":
@@ -251,12 +242,14 @@ class MyGame(arcade.Window):
     def on_finish(self):
         if self.dead == True:
             self.score = 0
-        arcade.close_window()
+        arcade.window_commands.close_window()
+        ending.main()
 
     def can_eat(self,fish):
         if fish.typeoffish.size > self.score:
             return False
-        return True
+        else:
+            return True
 
 
 def main():
