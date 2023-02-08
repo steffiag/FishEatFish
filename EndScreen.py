@@ -106,7 +106,25 @@ class End_Homepage(arcade.Window):
 
                 self.background = None
 
-        pass
+                # Render button
+                default_style = {
+                    "font_name": ("Kenney Blocks", "arial"),
+                    "font_size": 12,
+                    "font_color": arcade.color.WHITE,
+                    "border_width": 2,
+                    "border_color": None,
+                    "bg_color": arcade.color.GOLD,
+
+                    # used if button is pressed
+                    "bg_color_pressed": arcade.color.WHITE,
+                    "border_color_pressed": arcade.color.WHITE,  # also used when hovered
+                    "font_color_pressed": arcade.color.GOLD
+                }
+                pass
+                    
+
+
+        
 
 def main():
     game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
