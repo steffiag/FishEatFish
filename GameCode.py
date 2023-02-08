@@ -224,21 +224,9 @@ class MyGame(arcade.Window):
 
     def increase_size(self,fish):
         global SPRITE_SCALING_PLAYER
-        # Create larger sprite in the same place
-        self.player_sprite2 = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
-        self.player_sprite2.center_x = self.player_sprite.center_x
-        self.player_sprite2.center_y = self.player_sprite.center_y
-
-        # Remove old sprite
-        self.player_sprite.remove_from_sprite_lists()
-
-        # Remake sprite
-        SPRITE_SCALING_PLAYER += .05
-        self.player_sprite = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
-        self.player_sprite.center_x = self.player_sprite2.center_x
-        self.player_sprite.center_y = self.player_sprite2.center_y
-
-        self.all_sprites_list.append(self.player_sprite)
+        self.player_sprite._scale += .05
+        self.player_sprite._height += .05
+        self.player_sprite._width += .05
 
         # Change score
         if fish == "Powerup":
