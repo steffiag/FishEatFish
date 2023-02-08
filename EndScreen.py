@@ -120,7 +120,30 @@ class End_Homepage(arcade.Window):
                     "border_color_pressed": arcade.color.WHITE,  # also used when hovered
                     "font_color_pressed": arcade.color.GOLD
                 }
-                pass
+                self.v_box = arcade.gui.UIBoxLayout()
+
+                # Create the buttons
+                start_button = arcade.gui.UIFlatButton(text="Start!",width=150, style = default_style)
+                self.v_box.add(start_button.with_space_around(bottom=3.5))
+                start_button.on_click = self.on_start
+        
+                self.manager.add(
+                    arcade.gui.UIAnchorWidget(
+                    anchor_x="center_x",
+                    nchor_y="center_y",
+                    child=self.v_box))
+                
+            def on_click_open(self, event):
+                # The code in this function is run when we click the "ok" button.
+                # The code below opens the messages box and auto-dismisses it when done.
+                message_box = arcade.gui.UIMessageBox(
+                    width = 300,
+                    height = 200,
+                    # Continue from here!
+                )
+                
+                
+               
                     
 
 
