@@ -1,5 +1,6 @@
 import random
 import arcade
+import EndScreen as ending
 
 # --- Constants (other than powerups) ---
 SPRITE_SCALING_PLAYER = .5
@@ -241,6 +242,7 @@ class MyGame(arcade.Window):
         if self.dead == True:
             self.score = 0
         arcade.window_commands.close_window()
+        ending.main()
 
     def can_eat(self,fish):
         if fish.typeoffish.size > self.score:
