@@ -246,7 +246,8 @@ class MyGame(arcade.Window):
     def can_eat(self,fish):
         if fish.typeoffish.size > self.score:
             return False
-        return True
+        else:
+            return True
 
 
 def main():
