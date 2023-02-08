@@ -201,11 +201,13 @@ class MyGame(arcade.Window):
         for fish in hit_list:
             if self.can_eat(fish) == True:
                 fish.remove_from_sprite_lists()
+                
                 self.increase_size(fish)
                 self.num_of_fish -= 1
                 if self.num_of_fish == 0:
                     self.dead = False
                     self.on_finish
+                fish.draw() #THIS IS A MISTAKE PROBABLY SO FEEL FREE TO FIX
             else:
                 self.dead = True
                 self.on_finish
