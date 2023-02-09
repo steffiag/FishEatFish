@@ -244,8 +244,9 @@ class MyGame(arcade.Window):
     def on_finish(self):
         if self.dead == True:
             self.score = 0
-        arcade.window_commands.close_window()
-        ending.main()
+        game_view = ending.End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+        game_view.setup()
+        arcade.window_commands.set_window(game_view)
 
     def can_eat(self,fish):
         if fish.typeoffish.size > self.score:
