@@ -1,6 +1,5 @@
 import arcade
 import arcade.gui
-import main as restart
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -57,7 +56,7 @@ class End_Homepage(arcade.Window):
         self.v_box.add(restart_button.with_space_around(bottom=3.5))
         restart_button.on_click = self.on_restart
         
-        end_button = arcade.gui.UIFlatButton(text="Play again?",width=150, style = default_style)
+        end_button = arcade.gui.UIFlatButton(text="Stop?",width=150, style = default_style)
         self.v_box.add(end_button.with_space_around(bottom=3.5))
         end_button.on_click = self.on_end
 
@@ -90,13 +89,11 @@ class End_Homepage(arcade.Window):
         
         self.manager.draw()
 
-    def on_restart(self):
-        restart.play = True
-    
-    def on_end(self):
-        restart.play = False
+    def on_restart(self,event):
+        pass
 
-
+    def on_end(self,event):
+        arcade.window_commands.close_window
 
     
         
@@ -105,3 +102,5 @@ def main():
     game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.run()
+
+main()
