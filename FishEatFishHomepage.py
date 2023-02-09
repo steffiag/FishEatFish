@@ -122,7 +122,7 @@ class Homepage(arcade.Window):
         self.manager.draw()
         
     def on_message_box_close(self, button_text):
-        print(f"User pressed {button_text}.")
+        pass
 
     def on_start(self, event):
         game_view = gc.MyGame()
