@@ -127,7 +127,7 @@ class Homepage(arcade.Window):
     def on_start(self, event):
         game_view = gc.MyGame()
         game_view.setup()
-        self.window.show_view(game_view)
+        arcade.window_commands.set_window(game_view)
 
         
 def main():
