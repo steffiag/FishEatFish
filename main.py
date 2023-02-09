@@ -5,7 +5,7 @@
 
 import GameCode as game
 import FishEatFishHomepage as homepage
-# import EndScreen as ending
+import EndScreen as ending
 
 play = True
 
@@ -13,7 +13,7 @@ play = True
 def main():
     homepage.main()
     game.main()
-    # ending.main()
+    ending.main()
 
 while play == True:
     main()
