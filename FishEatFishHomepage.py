@@ -124,8 +124,10 @@ class Homepage(arcade.Window):
     def on_message_box_close(self, button_text):
         print(f"User pressed {button_text}.")
 
-    def on_start(self):
-        arcade.close_window()
+    def on_start(self, event):
+        game_view = MyGame()
+        game_view.setup()
+        self.window.show_view(game_view)
 
         
 def main():
