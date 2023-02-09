@@ -1,5 +1,6 @@
 import arcade
 import arcade.gui
+import main as restart
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -90,11 +91,12 @@ class End_Homepage(arcade.Window):
         self.manager.draw()
 
     def on_restart(self):
-        return True
+        restart.play = True
     
     def on_end(self):
         restart.play = False
-        
+
+
 
     
         
