@@ -90,10 +90,12 @@ class MyGame(arcade.Window):
         # Set up the player info
         self.player_sprite = None
 
+        # As to not make the computer mad
+        arcade.set_background_color(arcade.color.BLEU_DE_FRANCE)
+        self.background_color = arcade.color.BLEU_DE_FRANCE
+
         # Don't show the mouse cursor
         self.set_mouse_visible(False)
-
-        arcade.set_background_color(arcade.color.BLEU_DE_FRANCE)
 
     def setup(self):
         """ Set up the game and initialize the variables. """
