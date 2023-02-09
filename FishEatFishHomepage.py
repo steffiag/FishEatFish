@@ -125,7 +125,7 @@ class Homepage(arcade.Window):
         print(f"User pressed {button_text}.")
 
     def on_start(self, event):
-        game_view = MyGame()
+        game_view = gc.MyGame()
         game_view.setup()
         self.window.show_view(game_view)
 

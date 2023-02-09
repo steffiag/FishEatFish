@@ -95,6 +95,9 @@ class End_Homepage(arcade.Window):
     
     def on_end(self):
         restart.play = False
+
+
+    
         
 
 def main():
