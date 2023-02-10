@@ -1,5 +1,6 @@
 import arcade
 import arcade.gui
+import FishEatFishHomepage as restart
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -37,15 +38,15 @@ class End_Homepage(arcade.Window):
         default_style = {
             "font_name": ("Kenney Blocks", "arial"),
             "font_size": 12,
-            "font_color": arcade.color.INDIGO,
+            "font_color": arcade.color.WHITE,
             "border_width": 2,
             "border_color": None,
-            "bg_color": arcade.color.YELLOW,
+            "bg_color": arcade.color.GOLD,
 
             # used if button is pressed
-            "bg_color_pressed": arcade.color.YELLOW,
-            "border_color_pressed": arcade.color.YELLOW,  # also used when hovered
-            "font_color_pressed": arcade.color.INDIGO
+            "bg_color_pressed": arcade.color.WHITE,
+            "border_color_pressed": arcade.color.WHITE,  # also used when hovered
+            "font_color_pressed": arcade.color.GOLD
         }
         
         # Create a vertical BoxGroup to align buttons
@@ -90,7 +91,8 @@ class End_Homepage(arcade.Window):
         self.manager.draw()
 
     def on_restart(self,event):
-        pass
+        arcade.window_commands.close_window
+        restart.main()
 
     def on_end(self,event):
         arcade.window_commands.close_window        
@@ -99,3 +101,5 @@ def main():
     game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.run()
+
+main()
