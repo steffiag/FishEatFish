@@ -100,6 +100,4 @@ class End_Homepage(arcade.Window):
 def main():
     game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
-    arcade.run()
-
-main()
+    arcade.window_commands.set_window(game)

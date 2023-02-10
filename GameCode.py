@@ -217,7 +217,7 @@ class MyGame(arcade.Window):
         if self.num_of_fish == 0:
             self.dead = False
             self.on_finish
-            ending.myGame
+            ending.main()
 
         # Generate a list of all powerups that collided with the player.
         hit_list = arcade.check_for_collision_with_list(self.player_sprite,
