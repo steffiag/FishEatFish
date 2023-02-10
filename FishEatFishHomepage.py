@@ -125,7 +125,13 @@ class Homepage(arcade.Window):
         pass
 
     def on_start(self, event):
-        arcade.window_commands.close_window
+        # may not work
+        game_view = gc.MyGame()
+        game_view.setup()
+        arcade.window_commands.set_window(game_view)
+        # Closes the entire game, meant to close the start screen only
+        Homepage.close(self)
+        
 
         
 def main():
