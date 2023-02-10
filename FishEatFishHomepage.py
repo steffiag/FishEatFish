@@ -77,6 +77,7 @@ class Homepage(arcade.Window):
         self.v_box.add(instructions_button.with_space_around(bottom=-50))
         instructions_button.on_click = self.on_click_open
         
+        
         self.manager.add(
             arcade.gui.UIAnchorWidget(
                 anchor_x="center_x",
@@ -121,6 +122,7 @@ class Homepage(arcade.Window):
         self.manager.draw()
         
     def on_message_box_close(self, button_text):
+<<<<<<< HEAD
         print(f"User pressed {button_text}.")
 
     def on_start(self, event):
@@ -130,6 +132,14 @@ class Homepage(arcade.Window):
         # 
         
 
+=======
+        pass
+
+    def on_start(self, event):
+        arcade.window_commands.close_window
+
+        
+>>>>>>> 241770f4b337698a9bcaae60fa80e527abbbbb54
 def main():
     """ Main function """
     game = Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)

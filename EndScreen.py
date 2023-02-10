@@ -1,5 +1,4 @@
 import arcade
-import GameCode as gc
 import arcade.gui
 
 SCREEN_WIDTH = 800
@@ -13,7 +12,7 @@ SCREEN_TITLE = "Fish Eat Fish"
 CHARACTER_SCALING = 1
 TILE_SCALING = 0.5
 
-class Homepage(arcade.Window):
+class End_Homepage(arcade.Window):
     """
     Main application class.
 
@@ -30,7 +29,7 @@ class Homepage(arcade.Window):
         self.manager = arcade.gui.UIManager()
         self.manager.enable()
 
-        arcade.set_background_color(arcade.color.BLUE)
+        arcade.set_background_color(arcade.color.BABY_BLUE)
         
         self.background = None
         
@@ -38,15 +37,15 @@ class Homepage(arcade.Window):
         default_style = {
             "font_name": ("Kenney Blocks", "arial"),
             "font_size": 12,
-            "font_color": arcade.color.WHITE,
+            "font_color": arcade.color.INDIGO,
             "border_width": 2,
             "border_color": None,
-            "bg_color": arcade.color.GOLD,
+            "bg_color": arcade.color.YELLOW,
 
             # used if button is pressed
-            "bg_color_pressed": arcade.color.WHITE,
-            "border_color_pressed": arcade.color.WHITE,  # also used when hovered
-            "font_color_pressed": arcade.color.GOLD
+            "bg_color_pressed": arcade.color.YELLOW,
+            "border_color_pressed": arcade.color.YELLOW,  # also used when hovered
+            "font_color_pressed": arcade.color.INDIGO
         }
         
         # Create a vertical BoxGroup to align buttons
@@ -57,6 +56,10 @@ class Homepage(arcade.Window):
         self.v_box.add(restart_button.with_space_around(bottom=3.5))
         restart_button.on_click = self.on_restart
         
+        end_button = arcade.gui.UIFlatButton(text="Stop?",width=150, style = default_style)
+        self.v_box.add(end_button.with_space_around(bottom=3.5))
+        end_button.on_click = self.on_end
+
         self.manager.add(
             arcade.gui.UIAnchorWidget(
                 anchor_x="center_x",
@@ -86,13 +89,13 @@ class Homepage(arcade.Window):
         
         self.manager.draw()
 
-    def on_restart(self):
-        # 
-        # TO DO (not sure how to impliment)
-        #
+    def on_restart(self,event):
         pass
 
+    def on_end(self,event):
+        arcade.window_commands.close_window        
+
 def main():
-    game = Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+    game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.run()

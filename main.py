@@ -7,10 +7,16 @@ import GameCode as game
 import FishEatFishHomepage as homepage
 import EndScreen as ending
 
+play = True
+
 # Press the green button in the gutter to run the script.
-if __name__ == '__main__':
+def main():
     homepage.main()
     game.main()
     ending.main()
 
+main()
+
+# while play == True:
+#     main()
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

@@ -1,6 +1,7 @@
 
 import random
 import arcade
+import EndScreen as ending
 
 # --- Constants (other than powerups) ---
 SPRITE_SCALING_PLAYER = .5
@@ -9,7 +10,11 @@ FISH_COUNT = 20
 SCREEN_WIDTH = 1100
 SCREEN_HEIGHT = 700
 SCREEN_TITLE = "Fish Eat Fish"
+<<<<<<< HEAD
 MOVEMENT_SPEED=5
+=======
+MOVEMENT_SPEED = 5
+>>>>>>> 241770f4b337698a9bcaae60fa80e527abbbbb54
 
 class enemy():
     
@@ -89,11 +94,17 @@ class MyGame(arcade.Window):
 
         # Set up the player info
         self.player_sprite = None
+<<<<<<< HEAD
+=======
+
+        # As to not make the computer mad
+        arcade.set_background_color(arcade.color.BLEU_DE_FRANCE)
+        self.background_color = arcade.color.BLEU_DE_FRANCE
+        self._background_color = arcade.color.BLEU_DE_FRANCE
+>>>>>>> 241770f4b337698a9bcaae60fa80e527abbbbb54
 
         # Don't show the mouse cursor
         self.set_mouse_visible(False)
-
-        arcade.set_background_color(arcade.color.BLEU_DE_FRANCE)
 
     def setup(self):
         """ Set up the game and initialize the variables. """
@@ -159,7 +170,10 @@ class MyGame(arcade.Window):
         output = f"Size: {self.score}"
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
 
+<<<<<<< HEAD
     #def on_mouse_motion(self, x, y, dx, dy):
+=======
+>>>>>>> 241770f4b337698a9bcaae60fa80e527abbbbb54
     def on_key_press(self, key, modifiers):
 
         # If the player presses a key, update the speed
@@ -200,6 +214,7 @@ class MyGame(arcade.Window):
                                                         self.fish_list)
         
         # Loop through each colliding fish, remove it, and add to the score.
+<<<<<<< HEAD
         for fish in hit_list:
             if self.can_eat(fish) == True:
                 fish.remove_from_sprite_lists()
@@ -211,6 +226,23 @@ class MyGame(arcade.Window):
             else:
                 self.dead = True
                 self.on_finish()
+=======
+        if len(hit_list) > 0:
+            for fish in hit_list:
+                if self.can_eat(fish) == True:
+                    fish.remove_from_sprite_lists()
+                    self.increase_size(fish)
+                    self.num_of_fish -= 1
+                    fish.draw()
+                else:
+                    self.dead = True
+                    self.on_finish
+
+        # If the game is over
+        if self.num_of_fish == 0:
+            self.dead = False
+            self.on_finish
+>>>>>>> 241770f4b337698a9bcaae60fa80e527abbbbb54
 
         # Generate a list of all powerups that collided with the player.
         hit_list = arcade.check_for_collision_with_list(self.player_sprite,
@@ -225,21 +257,9 @@ class MyGame(arcade.Window):
 
     def increase_size(self,fish):
         global SPRITE_SCALING_PLAYER
-        # Create larger sprite in the same place
-        self.player_sprite2 = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
-        self.player_sprite2.center_x = self.player_sprite.center_x
-        self.player_sprite2.center_y = self.player_sprite.center_y
-
-        # Remove old sprite
-        self.player_sprite.remove_from_sprite_lists()
-
-        # Remake sprite
-        SPRITE_SCALING_PLAYER += .05
-        self.player_sprite = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
-        self.player_sprite.center_x = self.player_sprite2.center_x
-        self.player_sprite.center_y = self.player_sprite2.center_y
-
-        self.all_sprites_list.append(self.player_sprite)
+        self.player_sprite._scale += .05
+        self.player_sprite._height += .05
+        self.player_sprite._width += .05
 
         # Change score
         if fish == "Powerup":
@@ -253,12 +273,21 @@ class MyGame(arcade.Window):
     def on_finish(self):
         if self.dead == True:
             self.score = 0
+<<<<<<< HEAD
         quit()
+=======
+        arcade.close_window()
+>>>>>>> 241770f4b337698a9bcaae60fa80e527abbbbb54
 
     def can_eat(self,fish):
         if fish.typeoffish.size > self.score:
             return False
+<<<<<<< HEAD
         return True
+=======
+        else:
+            return True
+>>>>>>> 241770f4b337698a9bcaae60fa80e527abbbbb54
 
 
 def main():
