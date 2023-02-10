@@ -93,6 +93,7 @@ class MyGame(arcade.Window):
         # As to not make the computer mad
         arcade.set_background_color(arcade.color.BLEU_DE_FRANCE)
         self.background_color = arcade.color.BLEU_DE_FRANCE
+        self._background_color = arcade.color.BLEU_DE_FRANCE
 
         # Don't show the mouse cursor
         self.set_mouse_visible(False)
@@ -207,13 +208,16 @@ class MyGame(arcade.Window):
                     fish.remove_from_sprite_lists()
                     self.increase_size(fish)
                     self.num_of_fish -= 1
-                    if self.num_of_fish == 0:
-                        self.dead = False
-                        self.on_finish
                     fish.draw()
                 else:
                     self.dead = True
                     self.on_finish
+
+        # If the game is over
+        if self.num_of_fish == 0:
+            self.dead = False
+            self.on_finish
+            ending.myGame
 
         # Generate a list of all powerups that collided with the player.
         hit_list = arcade.check_for_collision_with_list(self.player_sprite,
@@ -244,9 +248,8 @@ class MyGame(arcade.Window):
     def on_finish(self):
         if self.dead == True:
             self.score = 0
-        game_view = ending.End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-        game_view.setup()
-        arcade.window_commands.set_window(game_view)
+        arcade.close_window()
+        
 
     def can_eat(self,fish):
         if fish.typeoffish.size > self.score:
