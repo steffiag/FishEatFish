@@ -125,9 +125,7 @@ class Homepage(arcade.Window):
         pass
 
     def on_start(self, event):
-        game_view = gc.MyGame()
-        game_view.setup()
-        arcade.window_commands.set_window(game_view)
+        arcade.window_commands.close_window
 
         
 def main():

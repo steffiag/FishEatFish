@@ -93,10 +93,7 @@ class End_Homepage(arcade.Window):
         pass
 
     def on_end(self,event):
-        arcade.window_commands.close_window
-
-    
-        
+        arcade.window_commands.close_window        
 
 def main():
     game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
