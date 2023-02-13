@@ -258,7 +258,8 @@ class MyGame(arcade.Window):
             return True
 
 
-def main():
+def main(current_window):
     window = MyGame()
     window.setup()
+    current_window.close()
     arcade.run()
