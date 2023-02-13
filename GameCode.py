@@ -217,7 +217,7 @@ class MyGame(arcade.Window):
         if self.num_of_fish == 0:
             self.dead = False
             self.on_finish
-            ending.myGame
+            
 
         # Generate a list of all powerups that collided with the player.
         hit_list = arcade.check_for_collision_with_list(self.player_sprite,
@@ -250,6 +250,7 @@ class MyGame(arcade.Window):
             self.score = 0
         arcade.close_window()
         
+
 
     def can_eat(self,fish):
         if fish.typeoffish.size > self.score:
