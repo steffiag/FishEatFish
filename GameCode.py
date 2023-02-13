@@ -261,5 +261,6 @@ class MyGame(arcade.Window):
 def main(current_window):
     window = MyGame()
     window.setup()
-    current_window.close()
+    if current_window != None:
+        current_window.close()
     arcade.set_window(window)
