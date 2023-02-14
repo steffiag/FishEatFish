@@ -479,11 +479,11 @@ class End_Homepage(arcade.Window):
         self.manager.draw()
 
     def on_restart(self,event):
-        arcade.window_commands.close_window
+        arcade.window_commands.close_window()
         main()
 
     def on_end(self,event):
-        arcade.window_commands.close_window        
+        arcade.window_commands.close_window()       
 
 def main3():
     game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
