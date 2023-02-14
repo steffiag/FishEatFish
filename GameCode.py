@@ -250,6 +250,7 @@ class MyGame(arcade.Window):
         if self.dead == True:
             self.score = 0
         arcade.close_window()
+        ending.main()
         
 
 
