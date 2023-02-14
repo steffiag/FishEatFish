@@ -129,9 +129,7 @@ class Homepage(arcade.Window):
         arcade.close_window()
         gc.main()
 
-        
 
-        
 
 def main():
     """ Main function """
