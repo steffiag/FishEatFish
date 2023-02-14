@@ -8,7 +8,7 @@ If Python and Arcade are installed, this example can be run from the command lin
 python -m arcade.examples.starting_template
 """
 import arcade
-from GameCode import MyGame
+import GameCode as gc
 import arcade.gui
 
 SCREEN_WIDTH = 800
@@ -128,6 +128,7 @@ class Homepage(arcade.Window):
         # may not work
         arcade.close_window()
         gc.main()
+
         
 
         
