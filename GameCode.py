@@ -10,11 +10,7 @@ FISH_COUNT = 20
 SCREEN_WIDTH = 1100
 SCREEN_HEIGHT = 700
 SCREEN_TITLE = "Fish Eat Fish"
-<<<<<<< HEAD
-MOVEMENT_SPEED=5
-=======
 MOVEMENT_SPEED = 5
->>>>>>> 241770f4b337698a9bcaae60fa80e527abbbbb54
 
 class enemy():
     
@@ -94,14 +90,11 @@ class MyGame(arcade.Window):
 
         # Set up the player info
         self.player_sprite = None
-<<<<<<< HEAD
-=======
 
         # As to not make the computer mad
         arcade.set_background_color(arcade.color.BLEU_DE_FRANCE)
         self.background_color = arcade.color.BLEU_DE_FRANCE
         self._background_color = arcade.color.BLEU_DE_FRANCE
->>>>>>> 241770f4b337698a9bcaae60fa80e527abbbbb54
 
         # Don't show the mouse cursor
         self.set_mouse_visible(False)
@@ -170,12 +163,8 @@ class MyGame(arcade.Window):
         output = f"Size: {self.score}"
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
 
-<<<<<<< HEAD
     #def on_mouse_motion(self, x, y, dx, dy):
-=======
->>>>>>> 241770f4b337698a9bcaae60fa80e527abbbbb54
     def on_key_press(self, key, modifiers):
-
         # If the player presses a key, update the speed
         if key == arcade.key.UP:
             self.player_sprite.change_y = MOVEMENT_SPEED
@@ -214,19 +203,6 @@ class MyGame(arcade.Window):
                                                         self.fish_list)
         
         # Loop through each colliding fish, remove it, and add to the score.
-<<<<<<< HEAD
-        for fish in hit_list:
-            if self.can_eat(fish) == True:
-                fish.remove_from_sprite_lists()
-                self.increase_size(fish)
-                self.num_of_fish -= 1
-                if self.num_of_fish == 0:
-                    self.dead = False
-                    self.on_finish()
-            else:
-                self.dead = True
-                self.on_finish()
-=======
         if len(hit_list) > 0:
             for fish in hit_list:
                 if self.can_eat(fish) == True:
@@ -242,7 +218,6 @@ class MyGame(arcade.Window):
         if self.num_of_fish == 0:
             self.dead = False
             self.on_finish
->>>>>>> 241770f4b337698a9bcaae60fa80e527abbbbb54
 
         # Generate a list of all powerups that collided with the player.
         hit_list = arcade.check_for_collision_with_list(self.player_sprite,
@@ -273,21 +248,13 @@ class MyGame(arcade.Window):
     def on_finish(self):
         if self.dead == True:
             self.score = 0
-<<<<<<< HEAD
-        quit()
-=======
         arcade.close_window()
->>>>>>> 241770f4b337698a9bcaae60fa80e527abbbbb54
 
     def can_eat(self,fish):
         if fish.typeoffish.size > self.score:
             return False
-<<<<<<< HEAD
-        return True
-=======
         else:
             return True
->>>>>>> 241770f4b337698a9bcaae60fa80e527abbbbb54
 
 
 def main():
