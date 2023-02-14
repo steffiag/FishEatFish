@@ -105,7 +105,6 @@ class Homepage(arcade.Window):
         print(f"User pressed {button_text}.")
 
     def on_start(self, event):
-        # may not work
         arcade.close_window()
         main2()
 
@@ -128,8 +127,8 @@ import random
 SPRITE_SCALING_PLAYER = .5
 FISH_COUNT = 20
 
-SCREEN_WIDTH = 1100
-SCREEN_HEIGHT = 700
+SCREEN_WIDTH2 = 1100
+SCREEN_HEIGHT2 = 700
 SCREEN_TITLE = "Fish Eat Fish"
 MOVEMENT_SPEED = 5
 
@@ -186,13 +185,13 @@ class Fish(arcade.Sprite):
         if self.left < 0:
             self.change_x *= -1
 
-        if self.right > SCREEN_WIDTH:
+        if self.right > SCREEN_WIDTH2:
             self.change_x *= -1
 
         if self.bottom < 0:
             self.change_y *= -1
 
-        if self.top > SCREEN_HEIGHT:
+        if self.top > SCREEN_HEIGHT2:
             self.change_y *= -1
 
 
@@ -202,7 +201,7 @@ class MyGame(arcade.Window):
     def __init__(self):
         """ Initializer """
         # Call the parent class initializer
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+        super().__init__(SCREEN_WIDTH2, SCREEN_HEIGHT2, SCREEN_TITLE)
 
         # Variables that will hold sprite lists
         self.all_sprites_list = None
@@ -245,8 +244,8 @@ class MyGame(arcade.Window):
             fish = Fish(normal_fish[random.randint(0,5)])
 
             # Position the fish
-            fish.center_x = random.randrange(SCREEN_WIDTH-30)+15
-            fish.center_y = random.randrange(SCREEN_HEIGHT-30)+15
+            fish.center_x = random.randrange(SCREEN_WIDTH2-30)+15
+            fish.center_y = random.randrange(SCREEN_HEIGHT2-30)+15
             randnum1 = random.randint(-1,1)
             while randnum1 == 0:
                 randnum1 = random.randint(-1,1)
@@ -268,8 +267,8 @@ class MyGame(arcade.Window):
             powerup = Fish(power_ups[random.randint(0,2)])
 
             # Position the powerup
-            powerup.center_x = random.randrange(SCREEN_WIDTH-140)+70
-            powerup.center_y = random.randrange(SCREEN_HEIGHT-140)+70
+            powerup.center_x = random.randrange(SCREEN_WIDTH2-140)+70
+            powerup.center_y = random.randrange(SCREEN_HEIGHT2-140)+70
             
             # Add the powerups to the lists
             self.all_sprites_list.append(powerup)
@@ -352,7 +351,6 @@ class MyGame(arcade.Window):
             powerup.remove_from_sprite_lists()
 
     def increase_size(self,fish):
-        global SPRITE_SCALING_PLAYER
         self.player_sprite._scale += .05
         self.player_sprite._height += .05
         self.player_sprite._width += .05
@@ -384,7 +382,7 @@ class MyGame(arcade.Window):
 def main2():
     window = MyGame()
     window.setup()
-    arcade.open_window(SCREEN_HEIGHT,SCREEN_HEIGHT,"Fish Eat Fish")
+    arcade.run
 
 
 
