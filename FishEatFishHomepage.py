@@ -125,7 +125,10 @@ class Homepage(arcade.Window):
         pass
 
     def on_start(self, event):
-        arcade.window_commands.close_window
+        # may not work
+        current_window = Homepage
+        gc.main(current_window)
+        
 
         
 def main():
