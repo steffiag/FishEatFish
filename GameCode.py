@@ -258,9 +258,7 @@ class MyGame(arcade.Window):
             return True
 
 
-def main(current_window):
+def main():
     window = MyGame()
     window.setup()
-    if current_window != None:
-        current_window.close()
     arcade.set_window(window)

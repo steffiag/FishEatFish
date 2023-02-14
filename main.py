@@ -12,7 +12,7 @@ play = True
 # Press the green button in the gutter to run the script.
 def main():
     homepage.main()
-    game.main(None)
+    game.main()
     ending.main()
 
 main()
