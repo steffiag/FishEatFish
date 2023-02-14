@@ -1,3 +1,4 @@
+
 import random
 import arcade
 import EndScreen as ending
@@ -162,8 +163,8 @@ class MyGame(arcade.Window):
         output = f"Size: {self.score}"
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
 
+    #def on_mouse_motion(self, x, y, dx, dy):
     def on_key_press(self, key, modifiers):
-
         # If the player presses a key, update the speed
         if key == arcade.key.UP:
             self.player_sprite.change_y = MOVEMENT_SPEED

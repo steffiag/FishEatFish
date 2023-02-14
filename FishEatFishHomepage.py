@@ -8,7 +8,7 @@ If Python and Arcade are installed, this example can be run from the command lin
 python -m arcade.examples.starting_template
 """
 import arcade
-import GameCode as gc
+from GameCode import MyGame
 import arcade.gui
 
 SCREEN_WIDTH = 800
@@ -122,7 +122,7 @@ class Homepage(arcade.Window):
         self.manager.draw()
         
     def on_message_box_close(self, button_text):
-        pass
+        print(f"User pressed {button_text}.")
 
     def on_start(self, event):
         # may not work
@@ -131,6 +131,7 @@ class Homepage(arcade.Window):
         
 
         
+
 def main():
     """ Main function """
     game = Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
