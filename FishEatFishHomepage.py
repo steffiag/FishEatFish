@@ -128,9 +128,8 @@ class Homepage(arcade.Window):
         # may not work
         arcade.close_window()
         gc.main()
-        
 
-        
+
 
 def main():
     """ Main function """

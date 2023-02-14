@@ -10,12 +10,12 @@ import EndScreen as ending
 play = True
 
 # Press the green button in the gutter to run the script.
-def main():
-    homepage.main()
-    game.main()
-    ending.main()
+# def main():
+homepage.main()
+# game.main()
+# ending.main()
 
-main()
+# main()
 
 # while play == True:
 #     main()
