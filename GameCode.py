@@ -261,4 +261,4 @@ class MyGame(arcade.Window):
 def main():
     window = MyGame()
     window.setup()
-    arcade.set_window(window)
+    arcade.open_window(SCREEN_HEIGHT,SCREEN_HEIGHT,"Fish Eat Fish")
