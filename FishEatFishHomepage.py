@@ -122,13 +122,15 @@ class Homepage(arcade.Window):
         self.manager.draw()
         
     def on_message_box_close(self, button_text):
-        pass
+        print(f"User pressed {button_text}.")
 
     def on_start(self, event):
         # may not work
         arcade.close_window()
+        gc.main()
 
-        
+
+
 def main():
     """ Main function """
     game = Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
