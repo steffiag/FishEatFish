@@ -13,7 +13,7 @@ play = True
 def main():
     homepage.main()
     game.main()
-    # ending.main()
+    ending.main()
 
 main()
 
