@@ -101,3 +101,4 @@ def main():
     game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.window_commands.set_window(game)
+    arcade.run

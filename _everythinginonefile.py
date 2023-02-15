@@ -211,9 +211,9 @@ class MyGame(arcade.Window):
         self.player_sprite = None
 
         # As to not make the computer mad
-        arcade.set_background_color((125,125,125))
-        self.background_color = (125,125,125)
-        self._background_color = (125,125,125)
+        arcade.set_background_color((55,125,225))
+        self.background_color = (55,125,225)
+        self._background_color = (55,125,225)
 
         # Don't show the mouse cursor
         self.set_mouse_visible(False)
