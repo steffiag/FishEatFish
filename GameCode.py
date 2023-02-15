@@ -260,6 +260,6 @@ class MyGame(arcade.Window):
 
 
 def main():
+    arcade.close_window()
     window = MyGame()
     window.setup()
-    arcade.run

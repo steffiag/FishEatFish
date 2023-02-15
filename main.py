@@ -10,13 +10,6 @@ import EndScreen as ending
 play = True
 
 # Press the green button in the gutter to run the script.
-# def main():
 homepage.main()
-# game.main()
-# ending.main()
 
-# main()
-
-# while play == True:
-#     main()
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
