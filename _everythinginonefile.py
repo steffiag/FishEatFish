@@ -105,7 +105,6 @@ class Homepage(arcade.Window):
         print(f"User pressed {button_text}.")
 
     def on_start(self, event):
-        arcade.close_window()
         main2()
 
 
@@ -367,7 +366,6 @@ class MyGame(arcade.Window):
     def on_finish(self):
         if self.dead == True:
             self.score = 0
-        arcade.close_window()
         main3()
         
 
@@ -380,9 +378,10 @@ class MyGame(arcade.Window):
 
 
 def main2():
+    arcade.close_window()
     window = MyGame()
     window.setup()
-    arcade.run
+    arcade.window_commands.set_window(window=window)
 
 
 
@@ -484,6 +483,7 @@ class End_Homepage(arcade.Window):
         arcade.window_commands.close_window()       
 
 def main3():
+    arcade.close_window()
     game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.window_commands.set_window(game)
