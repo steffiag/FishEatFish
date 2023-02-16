@@ -72,7 +72,7 @@ class End_Homepage(arcade.Window):
         """ Set up the game variables. Call to re-start the game. """
         # Create your sprites and sprite lists here
         # sets up background
-        self.background = arcade.load_texture("images/""FishHome.png")
+        self.background = arcade.load_texture("./images/FishHome.png")
 
     def on_draw(self):
         """
@@ -82,7 +82,6 @@ class End_Homepage(arcade.Window):
         # This command should happen before we start drawing. It will clear
         # the screen to the background color, and erase what we drew last frame.
         self.clear()
-        
         
         arcade.draw_lrwh_rectangle_textured(0, 0,
                                             SCREEN_WIDTH, SCREEN_HEIGHT,
@@ -101,4 +100,4 @@ def main():
     game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.window_commands.set_window(game)
-    arcade.run
+    arcade.run()
