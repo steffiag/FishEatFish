@@ -98,6 +98,7 @@ class MyGame(arcade.Window):
 
         # Don't show the mouse cursor
         self.set_mouse_visible(False)
+        
 
     def setup(self):
         """ Set up the game and initialize the variables. """
@@ -153,6 +154,7 @@ class MyGame(arcade.Window):
             # Add the powerups to the lists
             self.all_sprites_list.append(powerup)
             self.powerup_list.append(powerup)
+        
 
     def on_draw(self):
         """ Draw everything """
@@ -263,4 +265,4 @@ def main():
     arcade.close_window()
     window = MyGame()
     window.setup()
-    arcade.run
+    arcade.run()
