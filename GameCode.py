@@ -148,8 +148,8 @@ class MyGame(arcade.Window):
             powerup = Fish(power_ups[random.randint(0,2)])
 
             # Position the powerup
-            powerup.center_x = random.randrange(SCREEN_WIDTH2-140)+70
-            powerup.center_y = random.randrange(SCREEN_HEIGHT2-140)+70
+            powerup.center_x = random.randrange(SCREEN_WIDTH2-250)+125
+            powerup.center_y = random.randrange(SCREEN_HEIGHT2-250)+125
             
             # Add the powerups to the lists
             self.all_sprites_list.append(powerup)
