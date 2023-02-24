@@ -294,13 +294,13 @@ class MyGame(arcade.Window):
             powerup.remove_from_sprite_lists()
 
     def increase_size(self,fish):
-        self.player_sprite._scale += .05
-        self.player_sprite._height += .05
-        self.player_sprite._width += .05
+        self.player_sprite._scale += .5
+        self.player_sprite._height += .5
+        self.player_sprite._width += .5
 
         # Change score
         if fish == "Powerup":
-            self.score += 1
+            self.score += 2
         else:
             self.score += fish.typeoffish.size
         
