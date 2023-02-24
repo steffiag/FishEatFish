@@ -18,22 +18,6 @@ HEIGHT = 600
 SPRITE_SCALING = 0.5
 
 
-class MenuView(arcade.View):
-    def on_show_view(self):
-        arcade.set_background_color(arcade.color.WHITE)
-
-    def on_draw(self):
-        self.clear()
-        arcade.draw_text("Menu Screen", WIDTH / 2, HEIGHT / 2,
-                         arcade.color.BLACK, font_size=50, anchor_x="center")
-        arcade.draw_text("Click to advance.", WIDTH / 2, HEIGHT / 2 - 75,
-                         arcade.color.GRAY, font_size=20, anchor_x="center")
-
-    def on_mouse_press(self, _x, _y, _button, _modifiers):
-        game = GameView()
-        self.window.show_view(game)
-
-
 class GameView(arcade.View):
     def __init__(self):
         super().__init__()
@@ -82,7 +66,9 @@ class PauseView(arcade.View):
         self.game_view = game_view
 
     def on_show_view(self):
-        arcade.set_background_color(arcade.color.ORANGE)
+        arcade.set_background_color(arcade.color.OCEAN_BOAT_BLUE)
+        self.background = arcade.load_texture("images/""FishHome.png")
+
 
     def on_draw(self):
         self.clear()
@@ -92,6 +78,10 @@ class PauseView(arcade.View):
         # and saved in self.game_view.
         player_sprite = self.game_view.player_sprite
         player_sprite.draw()
+        
+        arcade.draw_lrwh_rectangle_textured(0, 0,
+                                            WIDTH, HEIGHT,
+                                            self.background)
 
         # draw an orange filter over him
         arcade.draw_lrtb_rectangle_filled(left=player_sprite.left,
@@ -127,7 +117,7 @@ class PauseView(arcade.View):
 
 def main():
     window = arcade.Window(WIDTH, HEIGHT, "Instruction and Game Over Views Example")
-    menu = MenuView()
+    menu = GameView()
     window.show_view(menu)
     arcade.run()
 
