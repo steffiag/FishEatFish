@@ -8,6 +8,6 @@ import FishEatFishHomepage as homepage
 play = True
 
 # Press the green button in the gutter to run the script.
-homepage.main()
+homepage.main(False)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
