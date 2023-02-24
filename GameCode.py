@@ -7,10 +7,11 @@ import EndScreen as ending
 SPRITE_SCALING_PLAYER = .5
 FISH_COUNT = 20
 
-SCREEN_WIDTH2 = 1100
-SCREEN_HEIGHT2 = 700
+SCREEN_WIDTH2 = 1500
+SCREEN_HEIGHT2 = 900
 SCREEN_TITLE = "Fish Eat Fish"
 MOVEMENT_SPEED = 5
+speedup = 5
 
 class enemy():
     
@@ -98,6 +99,13 @@ class MyGame(arcade.Window):
 
         # Don't show the mouse cursor
         self.set_mouse_visible(False)
+
+        # Movement speed increase powerup
+        self.added_speed = False
+        self.added_speed2 = False
+        self.added_speed3 = False
+        self.added_speed4 = False
+        self.added_speed5 = False
         
 
     def setup(self):
@@ -168,14 +176,65 @@ class MyGame(arcade.Window):
     #def on_mouse_motion(self, x, y, dx, dy):
     def on_key_press(self, key, modifiers):
         # If the player presses a key, update the speed
-        if key == arcade.key.UP:
-            self.player_sprite.change_y = MOVEMENT_SPEED
-        elif key == arcade.key.DOWN:
-            self.player_sprite.change_y = -MOVEMENT_SPEED
-        elif key == arcade.key.LEFT:
-            self.player_sprite.change_x = -MOVEMENT_SPEED
-        elif key == arcade.key.RIGHT:
-            self.player_sprite.change_x = MOVEMENT_SPEED
+        if self.added_speed == False:
+            if key == arcade.key.UP:
+                self.player_sprite.change_y = MOVEMENT_SPEED
+            elif key == arcade.key.DOWN:
+                self.player_sprite.change_y = -MOVEMENT_SPEED
+            elif key == arcade.key.LEFT:
+                self.player_sprite.change_x = -MOVEMENT_SPEED
+            elif key == arcade.key.RIGHT:
+                self.player_sprite.change_x = MOVEMENT_SPEED
+
+        elif self.added_speed2 == False:
+            if key == arcade.key.UP:
+                self.player_sprite.change_y = MOVEMENT_SPEED+1.5
+            elif key == arcade.key.DOWN:
+                self.player_sprite.change_y = -MOVEMENT_SPEED-1.5
+            elif key == arcade.key.LEFT:
+                self.player_sprite.change_x = -MOVEMENT_SPEED-1.5
+            elif key == arcade.key.RIGHT:
+                self.player_sprite.change_x = MOVEMENT_SPEED+1.5
+
+        elif self.added_speed3 == False:
+            if key == arcade.key.UP:
+                self.player_sprite.change_y = MOVEMENT_SPEED+3
+            elif key == arcade.key.DOWN:
+                self.player_sprite.change_y = -MOVEMENT_SPEED-3
+            elif key == arcade.key.LEFT:
+                self.player_sprite.change_x = -MOVEMENT_SPEED-3
+            elif key == arcade.key.RIGHT:
+                self.player_sprite.change_x = MOVEMENT_SPEED+3
+        
+        elif self.added_speed4 == False:
+            if key == arcade.key.UP:
+                self.player_sprite.change_y = MOVEMENT_SPEED+5.5
+            elif key == arcade.key.DOWN:
+                self.player_sprite.change_y = -MOVEMENT_SPEED-5.5
+            elif key == arcade.key.LEFT:
+                self.player_sprite.change_x = -MOVEMENT_SPEED-5.5
+            elif key == arcade.key.RIGHT:
+                self.player_sprite.change_x = MOVEMENT_SPEED+5.5
+                
+        elif self.added_speed5 == False:
+            if key == arcade.key.UP:
+                self.player_sprite.change_y = MOVEMENT_SPEED+7.5
+            elif key == arcade.key.DOWN:
+                self.player_sprite.change_y = -MOVEMENT_SPEED-7.5
+            elif key == arcade.key.LEFT:
+                self.player_sprite.change_x = -MOVEMENT_SPEED-7.5
+            elif key == arcade.key.RIGHT:
+                self.player_sprite.change_x = MOVEMENT_SPEED+7.5
+        
+        else:
+            if key == arcade.key.UP:
+                self.player_sprite.change_y = MOVEMENT_SPEED+10
+            elif key == arcade.key.DOWN:
+                self.player_sprite.change_y = -MOVEMENT_SPEED-10
+            elif key == arcade.key.LEFT:
+                self.player_sprite.change_x = -MOVEMENT_SPEED-10
+            elif key == arcade.key.RIGHT:
+                self.player_sprite.change_x = MOVEMENT_SPEED+10
 
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key. """
@@ -230,6 +289,8 @@ class MyGame(arcade.Window):
             if powerup.typeoffish.type == "size":
                 for x in range(3):
                     self.increase_size("Powerup")
+            if powerup.typeoffish.type == "speed":
+                self.increase_speed()
             powerup.remove_from_sprite_lists()
 
     def increase_size(self,fish):
@@ -245,6 +306,18 @@ class MyGame(arcade.Window):
         
         # Redraw everything
         self.all_sprites_list.draw()
+
+    def increase_speed(self):
+        if self.added_speed4 == True:
+            self.added_speed5 = True
+        elif self.added_speed3 == True:
+            self.added_speed4 = True
+        elif self.added_speed2 == True:
+            self.added_speed3 = True
+        elif self.added_speed == True:
+            self.added_speed2 = True
+        else:
+            self.added_speed = True
     
     def on_finish(self):
         if self.dead == True:
