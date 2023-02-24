@@ -90,20 +90,21 @@ class PauseView(arcade.View):
                                           bottom=player_sprite.bottom,
                                           color=arcade.color.ORANGE + (200,))
 
-        arcade.draw_text("PAUSED", WIDTH / 2, HEIGHT / 2 + 50,
-                         arcade.color.BLACK, font_size=50, anchor_x="center")
+        arcade.draw_text("PAUSED", WIDTH / 2, HEIGHT / 2.5 , arcade.color.WHITE, font_name="Kenney Blocks", font_size=50, anchor_x="center")
 
         # Show tip to return or reset
         arcade.draw_text("Press Esc. to return",
                          WIDTH / 2,
-                         HEIGHT / 2,
-                         arcade.color.BLACK,
+                         HEIGHT / 3,
+                         arcade.color.FLORAL_WHITE,
+                         font_name = "Kenney Blocks",
                          font_size=20,
                          anchor_x="center")
         arcade.draw_text("Press Enter to reset",
                          WIDTH / 2,
-                         HEIGHT / 2 - 30,
-                         arcade.color.BLACK,
+                         HEIGHT / 3 - 30,
+                         arcade.color.FLORAL_WHITE,
+                         font_name = "Kenney Blocks",
                          font_size=20,
                          anchor_x="center")
 
@@ -116,7 +117,7 @@ class PauseView(arcade.View):
 
 
 def main():
-    window = arcade.Window(WIDTH, HEIGHT, "Instruction and Game Over Views Example")
+    window = arcade.Window(WIDTH, HEIGHT, "Pause Screen")
     menu = GameView()
     window.show_view(menu)
     arcade.run()

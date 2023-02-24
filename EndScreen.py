@@ -52,12 +52,16 @@ class End_Homepage(arcade.Window):
         # Create a vertical BoxGroup to align buttons
         self.v_box = arcade.gui.UIBoxLayout()
 
+        # thank player for playing
+        restart_button = arcade.gui.UILabel(text="Thank you for playing!", style = default_style,font_size=30,text_color=(255,0,255,255))
+        self.v_box.add(restart_button.with_space_around(bottom=1.5))
+
         # Create the buttons
-        restart_button = arcade.gui.UIFlatButton(text="Play again?",width=150, style = default_style)
+        restart_button = arcade.gui.UIFlatButton(text="Play again?",width=175, style = default_style)
         self.v_box.add(restart_button.with_space_around(bottom=3.5))
         restart_button.on_click = self.on_restart
         
-        end_button = arcade.gui.UIFlatButton(text="Stop?",width=150, style = default_style)
+        end_button = arcade.gui.UIFlatButton(text="Stop playing?",width=175, style = default_style)
         self.v_box.add(end_button.with_space_around(bottom=3.5))
         end_button.on_click = self.on_end
 
@@ -72,7 +76,7 @@ class End_Homepage(arcade.Window):
         """ Set up the game variables. Call to re-start the game. """
         # Create your sprites and sprite lists here
         # sets up background
-        self.background = arcade.load_texture("images/""FishHome.png")
+        self.background = arcade.load_texture("./images/FishHome.png")
 
     def on_draw(self):
         """
@@ -83,7 +87,6 @@ class End_Homepage(arcade.Window):
         # the screen to the background color, and erase what we drew last frame.
         self.clear()
         
-        
         arcade.draw_lrwh_rectangle_textured(0, 0,
                                             SCREEN_WIDTH, SCREEN_HEIGHT,
                                             self.background)
@@ -91,13 +94,13 @@ class End_Homepage(arcade.Window):
         self.manager.draw()
 
     def on_restart(self,event):
-        arcade.window_commands.close_window
-        restart.main()
+        restart.main(True)
 
     def on_end(self,event):
-        arcade.window_commands.close_window        
+        arcade.close_window()
 
 def main():
     game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     game.setup()
     arcade.window_commands.set_window(game)
+    arcade.run()

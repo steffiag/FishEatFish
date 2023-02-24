@@ -92,12 +92,13 @@ class MyGame(arcade.Window):
         self.player_sprite = None
 
         # As to not make the computer mad
-        arcade.set_background_color((125,125,125))
-        self.background_color = (125,125,125)
-        self._background_color = (125,125,125)
+        arcade.set_background_color((55,125,225))
+        self.background_color = (55,125,225)
+        self._background_color = (55,125,225)
 
         # Don't show the mouse cursor
         self.set_mouse_visible(False)
+        
 
     def setup(self):
         """ Set up the game and initialize the variables. """
@@ -147,12 +148,13 @@ class MyGame(arcade.Window):
             powerup = Fish(power_ups[random.randint(0,2)])
 
             # Position the powerup
-            powerup.center_x = random.randrange(SCREEN_WIDTH2-140)+70
-            powerup.center_y = random.randrange(SCREEN_HEIGHT2-140)+70
+            powerup.center_x = random.randrange(SCREEN_WIDTH2-250)+125
+            powerup.center_y = random.randrange(SCREEN_HEIGHT2-250)+125
             
             # Add the powerups to the lists
             self.all_sprites_list.append(powerup)
             self.powerup_list.append(powerup)
+        
 
     def on_draw(self):
         """ Draw everything """
@@ -254,12 +256,16 @@ class MyGame(arcade.Window):
 
     def can_eat(self,fish):
         if fish.typeoffish.size > self.score:
+            arcade.close_window()
+            ending.main()
             return False
+            
         else:
             return True
 
 
 def main():
+    arcade.close_window()
     window = MyGame()
     window.setup()
-    arcade.run
+    arcade.run()
