@@ -349,7 +349,7 @@ class MyGame(arcade.Window):
         
     def protection(self):
         self.protected += 10000
-        self.protection_use += 100
+        self.protection_use += 50
 
     def can_eat(self,fish):
         if fish.typeoffish.size < self.score:
