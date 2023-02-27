@@ -132,9 +132,8 @@ class Homepage(arcade.Window):
 
 def main(restart):
     """ Main function """
-    game = Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    game.setup()
     if restart == True:
         arcade.close_window()
-        arcade.set_window(game)
+    window = Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+    window.setup()
     arcade.run()
