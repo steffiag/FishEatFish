@@ -280,6 +280,8 @@ class MyGame(arcade.Window):
                 else:
                     if self.protection_use > 0:
                         self.protection_use -= 1
+                    else:
+                        self.protected = self.score
 
         # If the game is over
         if self.num_of_fish <= 0:
@@ -346,20 +348,20 @@ class MyGame(arcade.Window):
         ending.main()
         
     def protection(self):
-        self.protected += 50
-        self.protection_use += 400
+        self.protected += 10000
+        self.protection_use += 100
 
     def can_eat(self,fish):
-        if fish.typeoffish.size > self.score:
-            arcade.close_window()
-            ending.main()
-            return False
+        if fish.typeoffish.size < self.score:
+            return True
         
         elif fish.typeoffish.size < self.protected:
             return "kinda"
 
         else:
-            return True
+            arcade.close_window()
+            ending.main()
+            return False
 
 
 def main():
