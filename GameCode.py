@@ -100,12 +100,15 @@ class MyGame(arcade.Window):
         # Don't show the mouse cursor
         self.set_mouse_visible(False)
 
-        # Movement speed increase powerup
+        # Powerup stuff
         self.added_speed = False
         self.added_speed2 = False
         self.added_speed3 = False
         self.added_speed4 = False
         self.added_speed5 = False
+
+        self.protected = 5
+        self.protection_use = 0
         
 
     def setup(self):
@@ -271,9 +274,14 @@ class MyGame(arcade.Window):
                     fish.remove_from_sprite_lists()
                     self.increase_size(fish)
                     fish.draw()
-                else:
+                elif self.can_eat(fish) == False:
                     self.dead = True
                     self.on_finish
+                else:
+                    if self.protection_use > 0:
+                        self.protection_use -= 1
+                    else:
+                        self.protected = self.score
 
         # If the game is over
         if self.num_of_fish <= 0:
@@ -296,9 +304,9 @@ class MyGame(arcade.Window):
             powerup.remove_from_sprite_lists()
 
     def increase_size(self,fish):
-        self.player_sprite._scale += .5
-        self.player_sprite._height += .5
-        self.player_sprite._width += .5
+        #self.player_sprite._scale += .5
+        #self.player_sprite._height += .5
+        #self.player_sprite._width += .5
 
         # Change score
         if fish == "Powerup":
@@ -306,6 +314,18 @@ class MyGame(arcade.Window):
         else:
             self.score += fish.typeoffish.size
         
+
+        # Protection powerup
+        if self.protection_use > 0:
+            self.protection_use -= 1
+            if fish == "Powerup":
+                self.protected += 2
+            else:
+                self.protected += fish.typeoffish.size
+
+        else:
+            self.protected = self.score
+
         # Redraw everything
         self.all_sprites_list.draw()
 
@@ -328,16 +348,20 @@ class MyGame(arcade.Window):
         ending.main()
         
     def protection(self):
-        pass
+        self.protected += 10000
+        self.protection_use += 50
 
     def can_eat(self,fish):
-        if fish.typeoffish.size > self.score:
+        if fish.typeoffish.size < self.score:
+            return True
+        
+        elif fish.typeoffish.size < self.protected:
+            return "kinda"
+
+        else:
             arcade.close_window()
             ending.main()
             return False
-            
-        else:
-            return True
 
 
 def main():
