@@ -7,8 +7,8 @@ import EndScreen as ending
 SPRITE_SCALING_PLAYER = .5
 FISH_COUNT = 20
 
-SCREEN_WIDTH2 = 1500
-SCREEN_HEIGHT2 = 800
+SCREEN_WIDTH2 = 1000
+SCREEN_HEIGHT2 = 600
 SCREEN_TITLE = "Fish Eat Fish"
 MOVEMENT_SPEED = 5
 speedup = 5
@@ -85,9 +85,10 @@ class MyGame(arcade.Window):
         super().__init__(SCREEN_WIDTH2, SCREEN_HEIGHT2, SCREEN_TITLE)
 
         # Variables that will hold sprite lists
+        
+        self.background = None
         self.all_sprites_list = None
         self.fish_list = None
-        self.num_of_fish = 0
 
         # Set up the player info
         self.player_sprite = None
@@ -113,6 +114,8 @@ class MyGame(arcade.Window):
 
     def setup(self):
         """ Set up the game and initialize the variables. """
+        
+        self.background = arcade.load_texture("images/""Background.jpg")
 
         # Sprite lists
         self.all_sprites_list = arcade.SpriteList()
@@ -150,7 +153,6 @@ class MyGame(arcade.Window):
             # Add the fish to the lists
             self.all_sprites_list.append(fish)
             self.fish_list.append(fish)
-        self.num_of_fish = 20
 
         # Create the powerups
         for i in range(5):
@@ -170,6 +172,9 @@ class MyGame(arcade.Window):
     def on_draw(self):
         """ Draw everything """
         self.clear()
+        arcade.draw_lrwh_rectangle_textured(0, 0,
+                                            SCREEN_WIDTH2, SCREEN_HEIGHT2,
+                                            self.background)
         self.all_sprites_list.draw()
 
         # Put the text on the screen.
@@ -269,7 +274,6 @@ class MyGame(arcade.Window):
         # Loop through each colliding fish, remove it, and add to the score.
         if len(hit_list) > 0:
             for fish in hit_list:
-                self.num_of_fish -= 1
                 if self.can_eat(fish) == True:
                     fish.remove_from_sprite_lists()
                     self.increase_size(fish)
@@ -283,9 +287,9 @@ class MyGame(arcade.Window):
                         self.protected = self.score
 
         # If the game is over
-        if self.num_of_fish <= 0:
+        if len(self.fish_list) <= 0:
             self.dead = False
-            self.on_finish
+            self.on_finish()
 
         # Generate a list of all powerups that collided with the player.
         hit_list = arcade.check_for_collision_with_list(self.player_sprite,

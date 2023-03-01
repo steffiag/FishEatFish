@@ -61,10 +61,6 @@ class End_Homepage(arcade.Window):
             restart_button = arcade.gui.UILabel(text=f"Your final score: {self.score}!", style = default_style,font_size=30,text_color=(255,0,255,255))
             self.v_box.add(restart_button.with_space_around(bottom=1.5))
 
-        # Create the buttons
-        end_button = arcade.gui.UIFlatButton(text="Stop playing?",width=175, style = default_style,y=120)
-        self.v_box.add(end_button.with_space_around(bottom=3.5))
-        end_button.on_click = self.on_end
 
         self.manager.add(
             arcade.gui.UIAnchorWidget(
@@ -77,7 +73,7 @@ class End_Homepage(arcade.Window):
         """ Set up the game variables. Call to re-start the game. """
         # Create your sprites and sprite lists here
         # sets up background
-        self.background = arcade.load_texture("./images/FishHome.png")
+        self.background = arcade.load_texture("images/""EndScreen_Background.png")
 
     def on_draw(self):
         """
