@@ -272,8 +272,7 @@ class MyGame(arcade.Window):
                     self.increase_size(fish)
                     fish.draw()
                 elif self.can_eat(fish) == False:
-                    self.dead = True
-                    self.on_finish
+                    exit()
                 else:
                     if self.protection_use > 0:
                         self.protection_use -= 1
@@ -283,7 +282,7 @@ class MyGame(arcade.Window):
         # If the game is over
         if len(self.fish_list) <= 0:
             self.dead = False
-            self.on_finish
+            self.on_finish()
 
         # Generate a list of all powerups that collided with the player.
         hit_list = arcade.check_for_collision_with_list(self.player_sprite,
@@ -339,10 +338,8 @@ class MyGame(arcade.Window):
             self.added_speed = True
     
     def on_finish(self):
-        if self.dead == True:
-            self.score = 0
         arcade.close_window()
-        ending.main()
+        ending.main(self.score,self.dead)
         
     def protection(self):
         self.protected += 10000
@@ -357,7 +354,7 @@ class MyGame(arcade.Window):
 
         else:
             arcade.close_window()
-            ending.main()
+            ending.main(self.score,True)
             return False
 
 

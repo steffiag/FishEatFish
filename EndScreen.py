@@ -22,13 +22,14 @@ class End_Homepage(arcade.Window):
     with your own code. Don't leave 'pass' in this program.
     """
 
-    def __init__(self, width, height, title):
+    def __init__(self, width, height, title, score, dead):
         super().__init__(width, height, title)
         
         # --- Required for all code that uses UI element,
         # a UIManager to handle the UI.
         self.manager = arcade.gui.UIManager()
         self.manager.enable()
+        self.score = score
 
         arcade.set_background_color(arcade.color.BABY_BLUE)
         
@@ -53,8 +54,12 @@ class End_Homepage(arcade.Window):
         self.v_box = arcade.gui.UIBoxLayout()
 
         # thank player for playing
-        restart_button = arcade.gui.UILabel(text="Thank you for playing!", style = default_style,font_size=30,text_color=(255,0,255,255))
-        self.v_box.add(restart_button.with_space_around(bottom=1.5))
+        if dead == True:
+            restart_button = arcade.gui.UILabel(text=f"Your final score (before dying): {self.score}!", style = default_style,font_size=30,text_color=(255,0,255,255))
+            self.v_box.add(restart_button.with_space_around(bottom=1.5))
+        else:
+            restart_button = arcade.gui.UILabel(text=f"Your final score: {self.score}!", style = default_style,font_size=30,text_color=(255,0,255,255))
+            self.v_box.add(restart_button.with_space_around(bottom=1.5))
 
         # Create the buttons
         end_button = arcade.gui.UIFlatButton(text="Stop playing?",width=175, style = default_style)
@@ -89,14 +94,11 @@ class End_Homepage(arcade.Window):
         
         self.manager.draw()
 
-    def on_restart(self,event):
-        restart.main(True)
-
     def on_end(self,event):
         arcade.close_window()
 
-def main():
-    game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+def main(score,dead):
+    game = End_Homepage(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, score, dead)
     game.setup()
     arcade.window_commands.set_window(game)
     arcade.run()
