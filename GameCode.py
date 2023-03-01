@@ -85,6 +85,8 @@ class MyGame(arcade.Window):
         super().__init__(SCREEN_WIDTH2, SCREEN_HEIGHT2, SCREEN_TITLE)
 
         # Variables that will hold sprite lists
+        
+        self.background = None
         self.all_sprites_list = None
         self.fish_list = None
         self.num_of_fish = 0
@@ -113,6 +115,8 @@ class MyGame(arcade.Window):
 
     def setup(self):
         """ Set up the game and initialize the variables. """
+        
+        self.background = arcade.load_texture("images/""Background.jpg")
 
         # Sprite lists
         self.all_sprites_list = arcade.SpriteList()
@@ -170,6 +174,9 @@ class MyGame(arcade.Window):
     def on_draw(self):
         """ Draw everything """
         self.clear()
+        arcade.draw_lrwh_rectangle_textured(0, 0,
+                                            SCREEN_WIDTH2, SCREEN_HEIGHT2,
+                                            self.background)
         self.all_sprites_list.draw()
 
         # Put the text on the screen.
