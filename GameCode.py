@@ -87,6 +87,7 @@ class MyGame(arcade.Window):
         # Variables that will hold sprite lists
         self.all_sprites_list = None
         self.fish_list = None
+        self.num_of_fish = 0
 
         # Set up the player info
         self.player_sprite = None
@@ -149,6 +150,7 @@ class MyGame(arcade.Window):
             # Add the fish to the lists
             self.all_sprites_list.append(fish)
             self.fish_list.append(fish)
+        self.num_of_fish = 20
 
         # Create the powerups
         for i in range(5):
@@ -267,12 +269,14 @@ class MyGame(arcade.Window):
         # Loop through each colliding fish, remove it, and add to the score.
         if len(hit_list) > 0:
             for fish in hit_list:
+                self.num_of_fish -= 1
                 if self.can_eat(fish) == True:
                     fish.remove_from_sprite_lists()
                     self.increase_size(fish)
                     fish.draw()
                 elif self.can_eat(fish) == False:
-                    exit()
+                    self.dead = True
+                    self.on_finish
                 else:
                     if self.protection_use > 0:
                         self.protection_use -= 1
@@ -280,9 +284,9 @@ class MyGame(arcade.Window):
                         self.protected = self.score
 
         # If the game is over
-        if len(self.fish_list) <= 0:
+        if self.num_of_fish <= 0:
             self.dead = False
-            self.on_finish()
+            self.on_finish
 
         # Generate a list of all powerups that collided with the player.
         hit_list = arcade.check_for_collision_with_list(self.player_sprite,
@@ -300,9 +304,9 @@ class MyGame(arcade.Window):
             powerup.remove_from_sprite_lists()
 
     def increase_size(self,fish):
-        self.player_sprite._scale += .5
-        self.player_sprite._height += .5
-        self.player_sprite._width += .5
+        #self.player_sprite._scale += .5
+        #self.player_sprite._height += .5
+        #self.player_sprite._width += .5
 
         # Change score
         if fish == "Powerup":
@@ -338,8 +342,10 @@ class MyGame(arcade.Window):
             self.added_speed = True
     
     def on_finish(self):
+        if self.dead == True:
+            self.score = 0
         arcade.close_window()
-        ending.main(self.score,self.dead)
+        ending.main()
         
     def protection(self):
         self.protected += 10000
@@ -354,7 +360,7 @@ class MyGame(arcade.Window):
 
         else:
             arcade.close_window()
-            ending.main(self.score,True)
+            ending.main()
             return False
 
 
