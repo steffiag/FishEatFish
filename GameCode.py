@@ -276,7 +276,6 @@ class MyGame(arcade.Window):
                     fish.draw()
                 elif self.can_eat(fish) == False:
                     self.dead = True
-                    self.on_finish
                 else:
                     if self.protection_use > 0:
                         self.protection_use -= 1

@@ -84,7 +84,7 @@ class Homepage(arcade.Window):
                 anchor_y="center_y",
                 child=self.v_box))
             
-    def on_click_open(self, event):
+    def on_click_open(self, event, instructions_button):
         # The code in this function is run when we click the ok button.
         # The code below opens the message box and auto-dismisses it when done.
         message_box = arcade.gui.UIMessageBox(
