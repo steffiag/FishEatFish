@@ -342,10 +342,8 @@ class MyGame(arcade.Window):
             self.added_speed = True
     
     def on_finish(self):
-        if self.dead == True:
-            self.score = 0
         arcade.close_window()
-        ending.main()
+        ending.main(self.score,self.dead)
         
     def protection(self):
         self.protected += 10000
@@ -360,8 +358,7 @@ class MyGame(arcade.Window):
 
         else:
             arcade.close_window()
-            ending.main()
-            return False
+            ending.main(self.score, True)
 
 
 def main():

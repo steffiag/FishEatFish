@@ -3,7 +3,7 @@ import arcade.gui
 import FishEatFishHomepage as restart
 
 SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_HEIGHT = 800
 SCREEN_TITLE = "Fish Eat Fish"
 
 
@@ -62,7 +62,7 @@ class End_Homepage(arcade.Window):
             self.v_box.add(restart_button.with_space_around(bottom=1.5))
 
         # Create the buttons
-        end_button = arcade.gui.UIFlatButton(text="Stop playing?",width=175, style = default_style)
+        end_button = arcade.gui.UIFlatButton(text="Stop playing?",width=175, style = default_style,y=120)
         self.v_box.add(end_button.with_space_around(bottom=3.5))
         end_button.on_click = self.on_end
 
