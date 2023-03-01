@@ -7,8 +7,8 @@ import EndScreen as ending
 SPRITE_SCALING_PLAYER = .5
 FISH_COUNT = 20
 
-SCREEN_WIDTH2 = 1500
-SCREEN_HEIGHT2 = 800
+SCREEN_WIDTH2 = 1000
+SCREEN_HEIGHT2 = 600
 SCREEN_TITLE = "Fish Eat Fish"
 MOVEMENT_SPEED = 5
 speedup = 5
@@ -85,6 +85,8 @@ class MyGame(arcade.Window):
         super().__init__(SCREEN_WIDTH2, SCREEN_HEIGHT2, SCREEN_TITLE)
 
         # Variables that will hold sprite lists
+        
+        self.background = None
         self.all_sprites_list = None
         self.fish_list = None
 
@@ -112,6 +114,8 @@ class MyGame(arcade.Window):
 
     def setup(self):
         """ Set up the game and initialize the variables. """
+        
+        self.background = arcade.load_texture("images/""Background.jpg")
 
         # Sprite lists
         self.all_sprites_list = arcade.SpriteList()
@@ -168,6 +172,9 @@ class MyGame(arcade.Window):
     def on_draw(self):
         """ Draw everything """
         self.clear()
+        arcade.draw_lrwh_rectangle_textured(0, 0,
+                                            SCREEN_WIDTH2, SCREEN_HEIGHT2,
+                                            self.background)
         self.all_sprites_list.draw()
 
         # Put the text on the screen.
