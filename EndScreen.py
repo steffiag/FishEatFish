@@ -57,10 +57,6 @@ class End_Homepage(arcade.Window):
         self.v_box.add(restart_button.with_space_around(bottom=1.5))
 
         # Create the buttons
-        restart_button = arcade.gui.UIFlatButton(text="Play again?",width=175, style = default_style)
-        self.v_box.add(restart_button.with_space_around(bottom=3.5))
-        restart_button.on_click = self.on_restart
-        
         end_button = arcade.gui.UIFlatButton(text="Stop playing?",width=175, style = default_style)
         self.v_box.add(end_button.with_space_around(bottom=3.5))
         end_button.on_click = self.on_end

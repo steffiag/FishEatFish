@@ -87,7 +87,6 @@ class MyGame(arcade.Window):
         # Variables that will hold sprite lists
         self.all_sprites_list = None
         self.fish_list = None
-        self.num_of_fish = 0
 
         # Set up the player info
         self.player_sprite = None
@@ -150,7 +149,6 @@ class MyGame(arcade.Window):
             # Add the fish to the lists
             self.all_sprites_list.append(fish)
             self.fish_list.append(fish)
-        self.num_of_fish = 20
 
         # Create the powerups
         for i in range(5):
@@ -269,7 +267,6 @@ class MyGame(arcade.Window):
         # Loop through each colliding fish, remove it, and add to the score.
         if len(hit_list) > 0:
             for fish in hit_list:
-                self.num_of_fish -= 1
                 if self.can_eat(fish) == True:
                     fish.remove_from_sprite_lists()
                     self.increase_size(fish)
@@ -284,7 +281,7 @@ class MyGame(arcade.Window):
                         self.protected = self.score
 
         # If the game is over
-        if self.num_of_fish <= 0:
+        if len(self.fish_list) <= 0:
             self.dead = False
             self.on_finish
 
