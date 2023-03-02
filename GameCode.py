@@ -53,15 +53,11 @@ class Fish(arcade.Sprite):
 
         self.change_x = (self.typeoffish.speed)*(random.randint(-1,1))
         self.change_y = (self.typeoffish.speed)*(random.randint(-1,1))
-        
-        
-
     def update(self):
 
         # Move the fish
         self.center_x += self.change_x
         self.center_y += self.change_y
-
         # If we are out-of-bounds, then 'bounce'
         if self.left < 0:
             self.change_x *= -1
@@ -313,11 +309,15 @@ class MyGame(arcade.Window):
         
         #new new code
         global SPRITE_SCALING_PLAYER
-        SPRITE_SCALING_PLAYER+=0.025
+        SPRITE_SCALING_PLAYER+=0.05
+        x=self.player_sprite.center_x
+        y=self.player_sprite.center_y
         self.player_sprite2 = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
         self.player_sprite.remove_from_sprite_lists()
+        self.player_sprite2.center_x = x
+        self.player_sprite2.center_y=y
         self.player_sprite = self.player_sprite2
-        self.all_sprites_list.append(self.player_sprite2)
+        self.all_sprites_list.append(self.player_sprite)
         self.score += 1
         
         #new new code STOP
