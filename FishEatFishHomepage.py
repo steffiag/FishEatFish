@@ -83,7 +83,6 @@ class Homepage(arcade.Window):
                 anchor_x="center_x",
                 anchor_y="center_y",
                 child=self.v_box))
-            
     def on_click_open(self, event):
         # The code in this function is run when we click the ok button.
         # The code below opens the message box and auto-dismisses it when done.
