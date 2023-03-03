@@ -53,7 +53,7 @@ class End_Homepage(arcade.Window):
         # Create a vertical BoxGroup to align buttons
         self.v_box = arcade.gui.UIBoxLayout()
 
-        # thank player for playing
+        # show score
         if dead == True:
             restart_button = arcade.gui.UILabel(text=f"Your final score (before dying): {self.score}!", style = default_style,font_size=20,text_color=(255,0,255,255))
             self.v_box.add(restart_button.with_space_around(bottom=1.5))
