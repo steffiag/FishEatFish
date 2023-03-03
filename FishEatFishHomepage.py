@@ -33,7 +33,6 @@ class Homepage(arcade.Window):
 
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
-        
         # --- Required for all code that uses UI element,
         # a UIManager to handle the UI.
         self.manager = arcade.gui.UIManager()
@@ -42,6 +41,19 @@ class Homepage(arcade.Window):
         arcade.set_background_color(arcade.color.BLUE)
         
         self.background = None
+        
+        self.media_player = None
+        self.paused = False
+        self.songs = ["little-mermaid.mp3"]
+        self.cur_song_index = 0
+
+
+        self.my_music = arcade.load_sound(self.songs[self.cur_song_index])
+        self.my_music.play()
+       
+       
+# Add to init of homepage
+
         
         # Render button
         default_style = {
