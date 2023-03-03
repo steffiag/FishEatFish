@@ -89,7 +89,7 @@ class Homepage(arcade.Window):
             width=300,
             height=200,
             message_text=(
-                "You are the pink fish. You need to eat fish that are smaller than you. Eating a smaller fish increases your size. If you eat a fish thats bigger than you, you die and game over! (also, you may insta-die due to the fish being able to spawn on top of you)"
+                "You are the pink fish. You need to eat fish that are smaller than you. Eating a smaller fish increases your size. If you eat a fish thats bigger than you, you die and game over!  Collect powerups to help you!"
             ),
             callback=self.on_message_box_close,
             buttons=["Ok"]
