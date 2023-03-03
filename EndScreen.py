@@ -3,7 +3,7 @@ import arcade.gui
 import FishEatFishHomepage as restart
 
 SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 650
+SCREEN_HEIGHT = 700
 SCREEN_TITLE = "Fish Eat Fish"
 
 
