@@ -3,7 +3,7 @@ import arcade.gui
 import FishEatFishHomepage as restart
 
 SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 800
+SCREEN_HEIGHT = 650
 SCREEN_TITLE = "Fish Eat Fish"
 
 
@@ -55,10 +55,10 @@ class End_Homepage(arcade.Window):
 
         # thank player for playing
         if dead == True:
-            restart_button = arcade.gui.UILabel(text=f"Your final score (before dying): {self.score}!", style = default_style,font_size=30,text_color=(255,0,255,255))
+            restart_button = arcade.gui.UILabel(text=f"Your final score (before dying): {self.score}!", style = default_style,font_size=20,text_color=(255,0,255,255))
             self.v_box.add(restart_button.with_space_around(bottom=1.5))
         else:
-            restart_button = arcade.gui.UILabel(text=f"Your final score: {self.score}!", style = default_style,font_size=30,text_color=(255,0,255,255))
+            restart_button = arcade.gui.UILabel(text=f"Your final score: {self.score}!", style = default_style,font_size=20,text_color=(255,0,255,255))
             self.v_box.add(restart_button.with_space_around(bottom=1.5))
 
 
