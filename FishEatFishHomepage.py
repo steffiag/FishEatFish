@@ -40,6 +40,10 @@ class Homepage(arcade.Window):
         self.manager.enable()
 
         arcade.set_background_color(arcade.color.BLUE)
+
+        
+       
+
         
         self.background = None
         
