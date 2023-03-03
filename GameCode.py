@@ -276,6 +276,7 @@ class MyGame(arcade.Window):
                     fish.draw()
                 elif self.can_eat(fish) == False:
                     self.dead = True
+                    self.on_finish()
                 else:
                     if self.protection_use > 0:
                         self.protection_use -= 1
@@ -303,10 +304,6 @@ class MyGame(arcade.Window):
             powerup.remove_from_sprite_lists()
 
     def increase_size(self,fish):
-        #self.player_sprite._scale += .5
-        #self.player_sprite._height += .5
-        #self.player_sprite._width += .5
-        
         #new new code
         global SPRITE_SCALING_PLAYER
         SPRITE_SCALING_PLAYER+=0.05
@@ -370,8 +367,8 @@ class MyGame(arcade.Window):
             return "kinda"
 
         else:
-            arcade.close_window()
-            ending.main(self.score, True)
+            self.dead = True
+            return False
 
 
 def main():
