@@ -304,11 +304,13 @@ class MyGame(arcade.Window):
             powerup.remove_from_sprite_lists()
 
     def increase_size(self,fish):
-        #new new code
+        #Makes new fish thats larger
         global SPRITE_SCALING_PLAYER
         SPRITE_SCALING_PLAYER+=0.05
+        #Finds smaller player_sprite's location
         x=self.player_sprite.center_x
         y=self.player_sprite.center_y
+        #makes bigger version at same location
         self.player_sprite2 = arcade.Sprite("images/""Player.png", SPRITE_SCALING_PLAYER)
         self.player_sprite.remove_from_sprite_lists()
         self.player_sprite2.center_x = x
@@ -317,7 +319,6 @@ class MyGame(arcade.Window):
         self.all_sprites_list.append(self.player_sprite)
         self.score += 1
         
-        #new new code STOP
         # Change score
         if fish == "Powerup":
             self.score += 2
