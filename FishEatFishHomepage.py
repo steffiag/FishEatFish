@@ -42,6 +42,7 @@ class Homepage(arcade.Window):
 
         self.background = None
         
+        # Music Import Code Section
         self.media_player = None
         self.paused = False
         self.songs = ["little-mermaid.mp3"]
