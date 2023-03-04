@@ -40,7 +40,6 @@ class Homepage(arcade.Window):
 
         arcade.set_background_color(arcade.color.BLUE)
 
-    # commit not working so added extra code         
         self.background = None
         
         self.media_player = None
@@ -50,11 +49,7 @@ class Homepage(arcade.Window):
 
 
         self.my_music = arcade.load_sound(self.songs[self.cur_song_index])
-        self.my_music.play()
-       
-       
-# Add to init of homepage
-
+        self.my_music.play(loop=True)
         
         # Render button
         default_style = {
