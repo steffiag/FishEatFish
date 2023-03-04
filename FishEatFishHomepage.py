@@ -40,10 +40,7 @@ class Homepage(arcade.Window):
 
         arcade.set_background_color(arcade.color.BLUE)
 
-        
-       
-
-        
+    # commit not working so added extra code         
         self.background = None
         
         self.media_player = None
