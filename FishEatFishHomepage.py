@@ -43,14 +43,14 @@ class Homepage(arcade.Window):
         self.background = None
         
         # Music Import Code Section
-        # self.media_player = None
-        # self.paused = False
-        # self.songs = ["little-mermaid.mp3"]
-        # self.cur_song_index = 0
+        self.media_player = None
+        self.paused = False
+        self.songs = ["little-mermaid.mp3"]
+        self.cur_song_index = 0
 
 
-        # self.my_music = arcade.load_sound(self.songs[self.cur_song_index])
-        # self.my_music.play(loop=True)
+        self.my_music = arcade.load_sound(self.songs[self.cur_song_index])
+        self.my_music.play(loop=True)
         
         # Render button
         default_style = {
