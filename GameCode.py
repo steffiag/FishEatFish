@@ -41,6 +41,15 @@ power_ups = [power("images/""Powerup_size.png","size"),
             power("images/""Powerup_speed.png","speed"),
             power("images/""Powerup_shield.png","shield")]
 
+class Scuba():
+
+    def __init__(self):
+        self.image = "images/""scuba_diver.png"
+        self.image_size = .15
+        self.speed = 2.5
+        self.size = 10000
+        
+
 class Fish(arcade.Sprite):
 
     def __init__(self, typeoffish):
@@ -53,6 +62,7 @@ class Fish(arcade.Sprite):
 
         self.change_x = (self.typeoffish.speed)*(random.randint(-1,1))
         self.change_y = (self.typeoffish.speed)*(random.randint(-1,1))
+
     def update(self):
 
         # Move the fish
@@ -85,6 +95,7 @@ class MyGame(arcade.Window):
         self.background = None
         self.all_sprites_list = None
         self.fish_list = None
+        self.scuba_diver_list = None
 
         # Set up the player info
         self.player_sprite = None
@@ -117,6 +128,7 @@ class MyGame(arcade.Window):
         self.all_sprites_list = arcade.SpriteList()
         self.fish_list = arcade.SpriteList()
         self.powerup_list = arcade.SpriteList()
+        self.scuba_diver_list = arcade.SpriteList()
 
         # Score
         self.score = 5
@@ -163,6 +175,28 @@ class MyGame(arcade.Window):
             # Add the powerups to the lists
             self.all_sprites_list.append(powerup)
             self.powerup_list.append(powerup)
+
+        # Create the scuba divers
+        for i in range(3):
+
+            # Create the scuba divers instance
+            scuba = Fish(Scuba())
+
+            # Position the scuba divers
+            scuba.center_x = random.randrange(SCREEN_WIDTH2-250)+125
+            scuba.center_y = random.randrange(SCREEN_HEIGHT2-250)+125
+            randnum1 = random.randint(-1,1)
+            while randnum1 == 0:
+                randnum1 = random.randint(-1,1)
+            randnum2 = random.randint(-1,1)
+            while randnum2 == 0:
+                randnum2 = random.randint(-1,1)
+            scuba.change_x = (scuba.typeoffish.speed)*randnum1
+            scuba.change_y = (scuba.typeoffish.speed)*randnum2
+
+            # Add the scuba divers to the lists
+            self.all_sprites_list.append(scuba)
+            self.scuba_diver_list.append(scuba)
         
 
     def on_draw(self):
@@ -303,6 +337,17 @@ class MyGame(arcade.Window):
                 self.protection()
             powerup.remove_from_sprite_lists()
 
+        # Generate a list of all fish that collided with the player.
+        hit_list = arcade.check_for_collision_with_list(self.player_sprite,
+                                                        self.scuba_diver_list)
+        
+        for scuba in hit_list:
+            if self.protection_use < 0:
+                self.dead = True
+                self.on_finish()
+            else:
+                self.protection_use -= 1
+
     def increase_size(self,fish):
         #new new code
         global SPRITE_SCALING_PLAYER
@@ -356,7 +401,7 @@ class MyGame(arcade.Window):
         ending.main(self.score,self.dead)
         
     def protection(self):
-        self.protected += 10000
+        self.protected += 100000
         self.protection_use += 50
 
     def can_eat(self,fish):
