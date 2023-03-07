@@ -43,14 +43,14 @@ class Homepage(arcade.Window):
         self.background = None
         
         # Music Import Code Section
-        self.media_player = None
-        self.paused = False
-        self.songs = ["little-mermaid.mp3"]
-        self.cur_song_index = 0
+        # self.media_player = None
+        # self.paused = False
+        # self.songs = ["little-mermaid.mp3"]
+        # self.cur_song_index = 0
 
 
-        self.my_music = arcade.load_sound(self.songs[self.cur_song_index])
-        self.my_music.play(loop=True)
+        # self.my_music = arcade.load_sound(self.songs[self.cur_song_index])
+        # self.my_music.play(loop=True)
         
         # Render button
         default_style = {
@@ -98,7 +98,7 @@ class Homepage(arcade.Window):
             width=300,
             height=200,
             message_text=(
-                "You are the pink fish. You need to eat fish that are smaller than you. Eating a smaller fish increases your size. If you eat a fish thats bigger than you, you die and game over!  Collect powerups to help you!"
+                "You are the pink fish. You need to eat fish that are smaller than you. Eating a smaller fish increases your size. If you eat a fish thats bigger than you, you die and game over!  Collect powerups to help you! Also, be careful for the scuba divers!"
             ),
             callback=self.on_message_box_close,
             buttons=["Ok"]
