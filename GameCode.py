@@ -28,6 +28,8 @@ normal_fish = [enemy("images/""Enemy_0.png",2,.3,4),
                 enemy("images/""Enemy_3.png",2.5,.2,2),
                 enemy("images/""Enemy_4.png",1,.7,60),
                 enemy("images/""Enemy_5.png",.25,.5,20),
+                enemy("images/""Enemy_6.png",4,.5,40),
+                enemy("images/""Enemy_7.png",3,.2,80),
                 enemy("images/""scuba_diver2.png",2,.7,10)]
 
 class power():
@@ -145,7 +147,7 @@ class MyGame(arcade.Window):
         for i in range(20):
 
             # Create the fish instance
-            fish = Fish(normal_fish[random.randint(0,5)])
+            fish = Fish(normal_fish[random.randint(0,7)])
 
             # Position the fish
             fish.center_x = random.randrange(SCREEN_WIDTH2-250)+125
