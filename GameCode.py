@@ -29,7 +29,7 @@ normal_fish = [enemy("images/""Enemy_0.png",2,.3,4),
                 enemy("images/""Enemy_4.png",1,.7,60),
                 enemy("images/""Enemy_5.png",.25,.5,20),
                 enemy("images/""Enemy_6.png",4,.5,40),
-                enemy("images/""Enemy_7.png",3,.2,80),
+                enemy("images/""Enemy_7.png",2,.1,80),
                 enemy("images/""scuba_diver2.png",2,.7,10)]
 
 class power():
